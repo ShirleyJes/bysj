@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.zzt.dao.IRepertoryDao">
+    <resultMap id="repertoryMap" type="com.zzt.model.Repertory">
+        <result column="amount" jdbcType="INTEGER" property="amount"/>
+        <result column="mwid" jdbcType="INTEGER" property="mwid"/>
+        <association property="material" javaType="com.zzt.model.Material">
+            <result column="matCode" jdbcType="INTEGER" property="matCode"/>
+            <result column="mName" jdbcType="VARCHAR" property="mName"/>
+            <result column="mnemonicCode" jdbcType="VARCHAR" property="mnemonicCode"/>
+            <result column="type" jdbcType="VARCHAR" property="type"/>
+            <result column="specifications" jdbcType="VARCHAR" property="specifications"/>
+            <result column="unitsOfMeasurement" jdbcType="VARCHAR" property="unitsOfMeasurement"/>
+            <result column="typeCode" jdbcType="INTEGER" property="typeCode"/>
+            <result column="price" jdbcType="INTEGER" property="price"/>
+            <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer"/>
+        </association>
+        <association property="warehouse" javaType="com.zzt.model.Warehouse">
+            <result column="wNumber" jdbcType="INTEGER" property="wNumber"/>
+            <result column="wName" jdbcType="VARCHAR" property="wName"/>
+        </association>
+
+    </resultMap>
+    <select id="selectRepertory" resultMap="repertoryMap" parameterType="Integer">
+        select mat_warehouse.mwid,mat_warehouse.wNumber,mat_warehouse.wName,material.*,mat_warehouse.amount from mat_warehouse,material
+        where mat_warehouse.matCode=material.matCode and mat_warehouse.wNumber=#{wNumber}
+    </select>
+
+</mapper>

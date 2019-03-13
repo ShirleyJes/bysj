@@ -13,8 +13,10 @@
 <body>
     id:${requestScope.user.id}<br/>
     email:${requestScope.user.email}<br/>
+    mobile:${requestScope.user.mobile}<br/>
     username:${requestScope.user.username}<br/>
     role:${requestScope.user.role}<br/>
-    mobile:${requestScope.user.mobile}<br/>
+    department:${requestScope.user.department}<br/>
+
 </body>
 </html>

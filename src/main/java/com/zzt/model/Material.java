@@ -21,6 +21,8 @@ public class Material {
     private long price;
     //（计量）单位
     private String unitsOfMeasurement;
+    //物料库存数
+    private Integer totalAmount;
 
     public long getMatCode() {
         return matCode;
@@ -94,6 +96,27 @@ public class Material {
         this.unitsOfMeasurement = unitsOfMeasurement;
     }
 
+    public Integer getTotalAmount() {
+        return totalAmount;
+    }
 
+    public void setTotalAmount(Integer totalAmount) {
+        this.totalAmount = totalAmount;
+    }
 
+    @Override
+    public String toString() {
+        return "Material{" +
+                "matCode=" + matCode +
+                ", mName='" + mName + '\'' +
+                ", mnemonicCode=" + mnemonicCode +
+                ", typeCode=" + typeCode +
+                ", type='" + type + '\'' +
+                ", specifications='" + specifications + '\'' +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", price=" + price +
+                ", unitsOfMeasurement='" + unitsOfMeasurement + '\'' +
+                ", totalAmount=" + totalAmount +
+                '}';
+    }
 }

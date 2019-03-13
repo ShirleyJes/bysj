@@ -4,5 +4,5 @@ import com.zzt.model.User;
 
 public interface IUserService {
 
-    public User selectUser(long userId);
+    User selectUser(long userId);
 }

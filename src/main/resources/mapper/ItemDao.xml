@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.zzt.dao.IItemDao">
+
+    <select id="addItem"  resultType="integer" parameterType="Item">
+        insert into item (matCode,num,amount,description,department,cost)
+        values (#{matCode},#{num},#{amount},#{description},#{department},#{cost})
+    </select>
+    <select id="deleteItem" resultType="integer" parameterType="integer">
+        delete from item where itemid=#{itemid}
+    </select>
+</mapper>

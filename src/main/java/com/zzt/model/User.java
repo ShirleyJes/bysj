@@ -6,6 +6,19 @@ public class User {
     private String email;
     private String mobile;
     private String username;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", username='" + username + '\'' +
+                ", role='" + role + '\'' +
+                ", department='" + department + '\'' +
+                '}';
+    }
+
     private String role;
     private String department;
 

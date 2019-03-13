@@ -4,10 +4,11 @@ import java.util.Date;
 
 //领料物资
 public class Item {
-    //物料
-    private Material material;
-    //仓库
-    private Warehouse warehouse;
+    private Integer itemid;
+    //物料编码
+    private Integer matCode;
+    //申请单号（order）;
+    private Integer num;
     //申领数量
     private Integer amount;
     //使用说明
@@ -17,20 +18,28 @@ public class Item {
     //项目总额
     private long cost;
 
-    public Material getMaterial() {
-        return material;
+    public Integer getMatCode() {
+        return matCode;
     }
 
-    public void setMaterial(Material material) {
-        this.material = material;
+    public void setMatCode(Integer matCode) {
+        this.matCode = matCode;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
+    public Integer getItemid() {
+        return itemid;
     }
 
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
+    public void setItemid(Integer itemid) {
+        this.itemid = itemid;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 
     public long getAmount() {

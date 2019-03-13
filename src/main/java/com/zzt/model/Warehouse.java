@@ -7,8 +7,6 @@ public class Warehouse {
     private Integer wNumber;
     //仓库名称
     private String wName;
-    //库存
-    private HashMap<Material,Integer> repertory;
 
     public Integer getwNumber() {
         return wNumber;
@@ -25,12 +23,11 @@ public class Warehouse {
         this.wName = wName;
     }
 
-    public HashMap<Material, Integer> getRepertory() {
-        return repertory;
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "wNumber=" + wNumber +
+                ", wName='" + wName + '\'' +
+                '}';
     }
-
-    public void setRepertory(HashMap<Material, Integer> repertory) {
-        this.repertory = repertory;
-    }
-
 }
