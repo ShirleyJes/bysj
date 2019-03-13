@@ -6,21 +6,8 @@ public class User {
     private String email;
     private String mobile;
     private String username;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
-                ", department='" + department + '\'' +
-                '}';
-    }
-
     private String role;
-    private String department;
+    private int deptNo;
 
     public long getId() {
         return id;
@@ -61,12 +48,14 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-    public String getDepartment() {
-        return department;
+
+    public int getDeptNo() {
+        return deptNo;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDeptNo(int deptNo) {
+        this.deptNo = deptNo;
     }
+
 
 }

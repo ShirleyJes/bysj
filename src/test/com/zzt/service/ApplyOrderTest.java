@@ -11,13 +11,13 @@ import java.util.Date;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test.xml"})
-public class OrderTest {
+public class ApplyOrderTest {
     @Resource
-    private IOrderService orderService;
+    private IApplyOrderService orderService;
     @Test
-    public void addOrderTest() throws Exception{
+    public void addApplyOrderTest() throws Exception{
         ApplyOrder applyOrder =new ApplyOrder();
-        applyOrder.setNum(2);
+        applyOrder.setNum(3);
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date sqlDate = sp.parse(sp.format(new Date()));
         applyOrder.setDate(sqlDate);
@@ -25,6 +25,10 @@ public class OrderTest {
         applyOrder.setComm("tesing  add applyOrder");
         applyOrder.setApproverid(2);
         applyOrder.setApplicantid(1);
-        orderService.addOrder(applyOrder);
+        orderService.addApplyOrder(applyOrder);
+    }
+    @Test
+    public void deleteApplyOrderTest(){
+        orderService.deleteApplyOrder(3);
     }
 }
