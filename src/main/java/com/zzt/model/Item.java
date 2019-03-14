@@ -7,6 +7,8 @@ public class Item {
     private Integer itemid;
     //物料编码
     private Integer matCode;
+
+    private Material material;
     //申请单号（order）;
     private Integer num;
     //申领数量
@@ -14,7 +16,8 @@ public class Item {
     //使用说明
     private String description;
     //使用部门
-    private String department;
+    private Department department;
+    private Integer deptNo;
     //项目总额
     private long cost;
 
@@ -24,6 +27,14 @@ public class Item {
 
     public void setMatCode(Integer matCode) {
         this.matCode = matCode;
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
     }
 
     public Integer getItemid() {
@@ -58,12 +69,20 @@ public class Item {
         this.description = description;
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Integer getDeptNo() {
+        return deptNo;
+    }
+
+    public void setDeptNo(Integer deptNo) {
+        this.deptNo = deptNo;
     }
 
     public long getCost() {

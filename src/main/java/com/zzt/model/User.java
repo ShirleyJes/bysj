@@ -8,6 +8,7 @@ public class User {
     private String username;
     private String role;
     private int deptNo;
+    private Department department;
 
     public long getId() {
         return id;
@@ -57,5 +58,23 @@ public class User {
         this.deptNo = deptNo;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
 
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", username='" + username + '\'' +
+                ", role='" + role + '\'' +
+                ", deptNo=" + deptNo +
+                '}';
+    }
 }

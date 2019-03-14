@@ -1,12 +1,14 @@
 package com.zzt.model;
 
 import java.util.Date;
+import java.util.List;
+
 //维修领料单
 public class ApplyOrder {
     //申领单号
     private Integer num;
     //申领日期
-    private Date date;
+    private Date createdate;
     //领用类型
     private String type;
     //总费用
@@ -21,8 +23,14 @@ public class ApplyOrder {
     private User applicant;
 
     private Integer applicantid;
-    //登记时间
-    private Date registrationDate;
+
+    //一个申领单下有多个领用物料细节
+    private List<Item> itemList;
+    //操作
+    private String operation;
+    //状态
+    private Integer sid;
+    private State state;
 
     public Integer getNum() {
         return num;
@@ -32,13 +40,6 @@ public class ApplyOrder {
         this.num = num;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public String getType() {
         return type;
@@ -96,12 +97,44 @@ public class ApplyOrder {
         this.applicantid = applicantid;
     }
 
-    public Date getRegistrationDate() {
-        return registrationDate;
+    public Date getCreatedate() {
+        return createdate;
     }
 
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
+    public Integer getSid() {
+        return sid;
+    }
+
+    public void setSid(Integer sid) {
+        this.sid = sid;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }
 

@@ -13,22 +13,23 @@ import java.util.Date;
 @ContextConfiguration(locations = {"classpath:test.xml"})
 public class ApplyOrderTest {
     @Resource
-    private IApplyOrderService orderService;
+    private IApplyOrderService applyOrderService;
     @Test
     public void addApplyOrderTest() throws Exception{
         ApplyOrder applyOrder =new ApplyOrder();
-        applyOrder.setNum(3);
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date sqlDate = sp.parse(sp.format(new Date()));
-        applyOrder.setDate(sqlDate);
+        applyOrder.setCreatedate(sqlDate);
         applyOrder.setType("无");
         applyOrder.setComm("tesing  add applyOrder");
         applyOrder.setApproverid(2);
         applyOrder.setApplicantid(1);
-        orderService.addApplyOrder(applyOrder);
+        applyOrder.setOperation("增加");
+        applyOrder.setSid(1);
+        applyOrderService.addApplyOrder(applyOrder);
     }
     @Test
     public void deleteApplyOrderTest(){
-        orderService.deleteApplyOrder(3);
+        applyOrderService.deleteApplyOrder(8);
     }
 }

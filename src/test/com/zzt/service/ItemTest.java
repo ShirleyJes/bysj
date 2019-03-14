@@ -19,12 +19,12 @@ public class ItemTest {
         item.setNum(1);
         item.setAmount(30);
         item.setDescription("for testing");
-        item.setDepartment("研发部");
+        item.setDeptNo(3);
         item.setCost(300);
         iItemService.addItem(item);
     }
     @Test
     public void deleteItemTest(){
-        iItemService.deleteItem(4);
+        iItemService.deleteItem(9);
     }
 }

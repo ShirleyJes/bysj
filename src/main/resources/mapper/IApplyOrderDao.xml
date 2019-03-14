@@ -3,13 +3,13 @@
 
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.zzt.dao.IApplyOrderDao">
-
-    <select id="addApplyOrder"  resultType="integer" parameterType="ApplyOrder">
-        insert into applyorder (createdate,type,comm,approverid,applicantid)
-        values (#{date},#{type},#{comm},#{approverid},#{applicantid})
-    </select>
+    <insert id="addApplyOrder"   parameterType="ApplyOrder">
+        insert into applyorder (createdate,type,approverid,applicantid,operation,sid,comm)
+        values (#{createdate},#{type},#{approverid},#{applicantid},#{operation},#{sid},#{comm})
+    </insert>
 
     <delete id="deleteApplyOrder"  parameterType="integer">
         delete from applyorder where num= #{num}
-         </delete>
+    </delete>
+
 </mapper>

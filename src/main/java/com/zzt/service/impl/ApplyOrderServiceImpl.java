@@ -6,17 +6,17 @@ import com.zzt.service.IApplyOrderService;
 
 import javax.annotation.Resource;
 
-@Service("orderService")
-public class ApplyApplyOrderServiceImpl implements IApplyOrderService {
+@Service("applyOrderService")
+public class ApplyOrderServiceImpl implements IApplyOrderService {
     @Resource
-    private IApplyOrderDao orderDao;
+    private IApplyOrderDao applyOrderDao;
     @Override
     public Integer addApplyOrder(ApplyOrder applyOrder) {
-        return orderDao.addApplyOrder(applyOrder);
+        return applyOrderDao.addApplyOrder(applyOrder);
     }
 
     @Override
     public Integer deleteApplyOrder(Integer num) {
-        return orderDao.deleteApplyOrder(num);
+        return applyOrderDao.deleteApplyOrder(num);
     }
 }

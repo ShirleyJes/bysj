@@ -4,11 +4,11 @@
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.zzt.dao.IItemDao">
 
-    <select id="addItem"  resultType="integer" parameterType="Item">
-        insert into item (matCode,num,amount,description,department,cost)
-        values (#{matCode},#{num},#{amount},#{description},#{department},#{cost})
-    </select>
-    <select id="deleteItem" resultType="integer" parameterType="integer">
+    <insert id="addItem"  parameterType="Item">
+        insert into item (matCode,num,amount,description,deptNo,cost)
+        values (#{matCode},#{num},#{amount},#{description},#{deptNo},#{cost})
+    </insert>
+    <delete id="deleteItem"  parameterType="integer">
         delete from item where itemid=#{itemid}
-    </select>
+    </delete>
 </mapper>
