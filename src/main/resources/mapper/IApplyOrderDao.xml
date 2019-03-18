@@ -3,13 +3,67 @@
 
 <!-- 设置为IUserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.zzt.dao.IApplyOrderDao">
+    <resultMap id="applicantMap" type="User">
+        <result property="username" column="applicant"/>
+        <association property="department" javaType="Department">
+            <result column="applicantDept"  property="deptName"/>
+        </association>
+    </resultMap>
+    <resultMap id="approverMap" type="User">
+        <result property="username" column="approver"/>
+        <association property="department" javaType="Department">
+            <result column="approverDept"  property="deptName"/>
+        </association>
+    </resultMap>
+    <resultMap id="applyOrderMap" type="ApplyOrder">
+        <result column="num" property="num"/>
+        <result column="createdate" property="createdate"/>
+        <result column="type" property="type"/>
+        <result column="totalCost" property="totalCost"/>
+        <result column="comm" property="comm"/>
+        <result column="operation" property="operation"/>
+        <result column="sid" property="sid"/>
+        <association property="applicant"  resultMap="applicantMap"/>
+        <association property="approver" resultMap="approverMap"/>
+        <association property="state" javaType="State">
+            <result column="sname" property="sname"/>
+        </association>
+    </resultMap>
+
     <insert id="addApplyOrder"   parameterType="ApplyOrder">
-        insert into applyorder (createdate,type,approverid,applicantid,operation,sid,comm)
-        values (#{createdate},#{type},#{approverid},#{applicantid},#{operation},#{sid},#{comm})
+        insert into applyorder (createdate,type,approverid,applicantid,operation,sid,comm,totalCost)
+        values (#{createdate},#{type},#{approverid},#{applicantid},#{operation},#{sid},#{comm},#{totalCost})
     </insert>
 
     <delete id="deleteApplyOrder"  parameterType="integer">
         delete from applyorder where num= #{num}
     </delete>
 
+    <select id="findAllApplyOrder" resultMap="applyOrderMap">
+        SELECT
+            a.operation,
+            s.sname,
+            a.createdate,
+            a.num,
+            a.type,
+            a.totalCost,
+            u1.username AS applicant,
+            d1.deptName AS applicantDept,
+            u2.username AS approver,
+            d2.deptName AS approverDept,
+            a.comm
+        FROM
+            applyorder a,
+            USER u1,
+            USER u2,
+            state s,
+            department d1,
+            department d2
+        WHERE
+            a.applicantid = u1.id
+            AND a.approverid = u2.id
+            AND a.sid = s.sid
+            AND u1.deptNo = d1.deptNo
+            AND u2.deptNo = d2.deptNo
+    </select>
 </mapper>

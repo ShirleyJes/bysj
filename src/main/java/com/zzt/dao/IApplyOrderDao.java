@@ -9,4 +9,5 @@ public interface IApplyOrderDao {
     Integer deleteApplyOrder(Integer num);
     //维修领料单查询
     //查询全部/
+    List<ApplyOrder> findAllApplyOrder();
 }

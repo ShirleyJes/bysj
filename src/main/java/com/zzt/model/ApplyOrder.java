@@ -17,11 +17,9 @@ public class ApplyOrder {
     private String comm;
     //审批人
     private User approver;
-
     private Integer approverid;
     //申领人
     private User applicant;
-
     private Integer applicantid;
 
     //一个申领单下有多个领用物料细节

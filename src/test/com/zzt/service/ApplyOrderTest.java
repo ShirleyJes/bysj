@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test.xml"})
@@ -22,6 +23,7 @@ public class ApplyOrderTest {
         applyOrder.setCreatedate(sqlDate);
         applyOrder.setType("无");
         applyOrder.setComm("tesing  add applyOrder");
+        applyOrder.setTotalCost(10000);
         applyOrder.setApproverid(2);
         applyOrder.setApplicantid(1);
         applyOrder.setOperation("增加");
@@ -30,6 +32,11 @@ public class ApplyOrderTest {
     }
     @Test
     public void deleteApplyOrderTest(){
-        applyOrderService.deleteApplyOrder(8);
+        applyOrderService.deleteApplyOrder(7);
+    }
+    @Test
+    public void findAllApplyOrderTest(){
+        List<ApplyOrder> applyOrderList=applyOrderService.findAllApplyOrder();
+        System.out.println(applyOrderList.size());
     }
 }

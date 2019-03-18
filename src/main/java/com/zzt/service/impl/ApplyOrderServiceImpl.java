@@ -5,6 +5,7 @@ import com.zzt.model.ApplyOrder;
 import com.zzt.service.IApplyOrderService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("applyOrderService")
 public class ApplyOrderServiceImpl implements IApplyOrderService {
@@ -18,5 +19,10 @@ public class ApplyOrderServiceImpl implements IApplyOrderService {
     @Override
     public Integer deleteApplyOrder(Integer num) {
         return applyOrderDao.deleteApplyOrder(num);
+    }
+
+    @Override
+    public List<ApplyOrder> findAllApplyOrder() {
+        return applyOrderDao.findAllApplyOrder();
     }
 }

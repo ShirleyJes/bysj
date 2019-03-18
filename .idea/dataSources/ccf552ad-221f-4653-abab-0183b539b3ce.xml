@@ -830,33 +830,33 @@
     <table id="213" parent="3" name="state"/>
     <table id="214" parent="3" name="user"/>
     <table id="215" parent="3" name="warehouse"/>
-    <column id="216" parent="208" name="operation">
+    <column id="216" parent="208" name="num">
       <Position>1</Position>
+      <Comment>维修单号</Comment>
+      <DataType>bigint(12)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="217" parent="208" name="operation">
+      <Position>2</Position>
       <Comment>操作</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="217" parent="208" name="sid">
-      <Position>2</Position>
+    <column id="218" parent="208" name="sid">
+      <Position>3</Position>
       <Comment>状态</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="218" parent="208" name="createdate">
-      <Position>3</Position>
+    <column id="219" parent="208" name="createdate">
+      <Position>4</Position>
       <Comment>申领日期</Comment>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="219" parent="208" name="num">
-      <Position>4</Position>
-      <Comment>维修单号</Comment>
-      <DataType>bigint(12)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="220" parent="208" name="type">
@@ -887,12 +887,19 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="224" parent="208" name="PRIMARY">
+    <column id="224" parent="208" name="totalCost">
+      <Position>9</Position>
+      <Comment>申领单总费用</Comment>
+      <DataType>bigint(10)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="225" parent="208" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>num</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="225" parent="209" name="deptNo">
+    <column id="226" parent="209" name="deptNo">
       <Position>1</Position>
       <Comment>部门编号</Comment>
       <DataType>int(11)|0s</DataType>
@@ -900,81 +907,81 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="226" parent="209" name="deptName">
+    <column id="227" parent="209" name="deptName">
       <Position>2</Position>
       <Comment>部门名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="227" parent="209" name="PRIMARY">
+    <key id="228" parent="209" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>deptNo</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="228" parent="210" name="itemid">
+    <column id="229" parent="210" name="itemid">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="229" parent="210" name="matCode">
+    <column id="230" parent="210" name="matCode">
       <Position>2</Position>
       <Comment>物资编号</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="230" parent="210" name="num">
+    <column id="231" parent="210" name="num">
       <Position>3</Position>
       <Comment>申领单号</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="231" parent="210" name="amount">
+    <column id="232" parent="210" name="amount">
       <Position>4</Position>
       <Comment>申领数量</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="232" parent="210" name="description">
+    <column id="233" parent="210" name="description">
       <Position>5</Position>
       <Comment>使用说明</Comment>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="233" parent="210" name="deptNo">
+    <column id="234" parent="210" name="deptNo">
       <Position>6</Position>
       <Comment>使用部门编号</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="210" name="cost">
+    <column id="235" parent="210" name="cost">
       <Position>7</Position>
       <Comment>项目总额</Comment>
       <DataType>bigint(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="235" parent="210" name="matCode">
+    <index id="236" parent="210" name="matCode">
       <ColNames>matCode</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="236" parent="210" name="num">
+    <index id="237" parent="210" name="num">
       <ColNames>num</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="237" parent="210" name="PRIMARY">
+    <key id="238" parent="210" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>itemid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="238" parent="211" name="mwid">
+    <column id="239" parent="211" name="mwid">
       <Position>1</Position>
       <Comment>主键</Comment>
       <DataType>int(10)|0s</DataType>
@@ -982,223 +989,223 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="211" name="wNumber">
+    <column id="240" parent="211" name="wNumber">
       <Position>2</Position>
       <Comment>仓库编号</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="240" parent="211" name="wName">
+    <column id="241" parent="211" name="wName">
       <Position>3</Position>
       <Comment>仓库名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="211" name="matCode">
+    <column id="242" parent="211" name="matCode">
       <Position>4</Position>
       <Comment>物料编码</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="211" name="mName">
+    <column id="243" parent="211" name="mName">
       <Position>5</Position>
       <Comment>物料名称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="243" parent="211" name="amount">
+    <column id="244" parent="211" name="amount">
       <Position>6</Position>
       <Comment>物料数量</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="244" parent="211" name="wNumber">
+    <index id="245" parent="211" name="wNumber">
       <ColNames>wNumber</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="245" parent="211" name="wName">
+    <index id="246" parent="211" name="wName">
       <ColNames>wName</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="246" parent="211" name="fk_matCode">
+    <index id="247" parent="211" name="fk_matCode">
       <ColNames>matCode</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="247" parent="211" name="mName">
+    <index id="248" parent="211" name="mName">
       <ColNames>mName</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="248" parent="211" name="PRIMARY">
+    <key id="249" parent="211" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>mwid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="249" parent="211" name="fk_wNumber">
+    <foreign-key id="250" parent="211" name="fk_wNumber">
       <ColNames>wNumber</ColNames>
       <RefSchemaName>bysj</RefSchemaName>
       <RefTableName>warehouse</RefTableName>
       <RefColNames>wNumber</RefColNames>
     </foreign-key>
-    <foreign-key id="250" parent="211" name="fk_matCode">
+    <foreign-key id="251" parent="211" name="fk_matCode">
       <ColNames>matCode</ColNames>
       <RefSchemaName>bysj</RefSchemaName>
       <RefTableName>material</RefTableName>
       <RefColNames>matCode</RefColNames>
     </foreign-key>
-    <column id="251" parent="212" name="matCode">
+    <column id="252" parent="212" name="matCode">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="212" name="mName">
+    <column id="253" parent="212" name="mName">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="253" parent="212" name="mnemonicCode">
+    <column id="254" parent="212" name="mnemonicCode">
       <Position>3</Position>
       <DataType>bigint(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="212" name="typeCode">
+    <column id="255" parent="212" name="typeCode">
       <Position>4</Position>
       <DataType>bigint(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="212" name="type">
+    <column id="256" parent="212" name="type">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="212" name="specifications">
+    <column id="257" parent="212" name="specifications">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="212" name="manufacturer">
+    <column id="258" parent="212" name="manufacturer">
       <Position>7</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="212" name="price">
+    <column id="259" parent="212" name="price">
       <Position>8</Position>
       <DataType>bigint(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="212" name="unitsOfMeasurement">
+    <column id="260" parent="212" name="unitsOfMeasurement">
       <Position>9</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="212" name="toalAmount">
+    <column id="261" parent="212" name="toalAmount">
       <Position>10</Position>
       <Comment>物料总数</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="261" parent="212" name="matCode">
+    <index id="262" parent="212" name="matCode">
       <ColNames>matCode</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="262" parent="212" name="name">
+    <index id="263" parent="212" name="name">
       <ColNames>mName</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="263" parent="212" name="PRIMARY">
+    <key id="264" parent="212" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>matCode</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="264" parent="213" name="sid">
+    <column id="265" parent="213" name="sid">
       <Position>1</Position>
       <Comment>状态编码</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="213" name="sname">
+    <column id="266" parent="213" name="sname">
       <Position>2</Position>
       <Comment>状态</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="266" parent="213" name="PRIMARY">
+    <key id="267" parent="213" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>sid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="267" parent="214" name="id">
+    <column id="268" parent="214" name="id">
       <Position>1</Position>
       <DataType>int(8)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="214" name="email">
+    <column id="269" parent="214" name="email">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="214" name="mobile">
+    <column id="270" parent="214" name="mobile">
       <Position>3</Position>
       <DataType>varchar(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="214" name="username">
+    <column id="271" parent="214" name="username">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="214" name="role">
+    <column id="272" parent="214" name="role">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="214" name="deptNo">
+    <column id="273" parent="214" name="deptNo">
       <Position>6</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="273" parent="214" name="PRIMARY">
+    <key id="274" parent="214" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="274" parent="215" name="wNumber">
+    <column id="275" parent="215" name="wNumber">
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="215" name="wName">
+    <column id="276" parent="215" name="wName">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="276" parent="215" name="PRIMARY">
+    <key id="277" parent="215" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>wNumber</ColNames>
       <Primary>1</Primary>
