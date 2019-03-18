@@ -25,6 +25,6 @@ public class ItemTest {
     }
     @Test
     public void deleteItemTest(){
-        iItemService.deleteItem(9);
+        iItemService.deleteItem(14);
     }
 }

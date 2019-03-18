@@ -32,7 +32,7 @@ public class ApplyOrderTest {
     }
     @Test
     public void deleteApplyOrderTest(){
-        applyOrderService.deleteApplyOrder(7);
+        applyOrderService.deleteApplyOrder(11);
     }
     @Test
     public void findAllApplyOrderTest(){

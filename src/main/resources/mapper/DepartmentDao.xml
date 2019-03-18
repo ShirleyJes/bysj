@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.zzt.dao.IDepartmentDao">
+    <resultMap id="deptMatDetailMap" type="DeptMatDetail">
+        <result property="cost" column="cost"/>
+        <result property="amount" column="amount"/>
+        <result property="createdate" column="createdate"/>
+        <association property="department" javaType="Department">
+            <result property="deptName" column="deptName"/>
+        </association>
+        <association property="material" javaType="Material">
+            <result property="matCode" column="matCode"/>
+            <result property="mName" column="mName"/>
+            <result property="type" column="type"/>
+            <result property="specifications" column="specifications"/>
+            <result property="unitsOfMeasurement" column="unitsOfMeasurement"/>
+            <result property="price" column="price"/>
+        </association>
+    </resultMap>
+    <select id="findAll" resultType="DeptMatDetail" parameterType="com.zzt.model.DeptMatParams">
+      SELECT
+        a.createdate as createdate,
+        d.deptName as dedeptName,
+        m.matCode as matCode,
+        m.mName as mName,
+        m.type as type,
+        m.specifications as specifications ,
+        m.unitsOfMeasurement as unitsOfMeasurement,
+        m.price as price,
+        i.amount as amount,
+        i.cost as cost
+        FROM
+        applyorder a,
+        item i,
+        material m,
+        department d
+        WHERE
+        1=1
+        <choose>
+            <when test="deptNo != null and deptNo != ''">
+                and d.deptNo= #{deptNo}
+            </when>
+            <when test="deptName != null and deptName != ''">
+                and d.deptName= #{deptName}
+            </when>
+            <when test="matCode != null and matCode != ''">
+                and m.matCode= #{matCode}
+            </when>
+            <when test="mName != null and mName != ''">
+                and m.mName= #{mName}
+            </when>
+            <when test="mtype != null and mtype != ''">
+                and m.type= #{mtype}
+            </when>
+            <when test="specifications != null and specifications != ''">
+                and m.specifications= #{specifications}
+            </when>
+        </choose>
+        AND a.num = i.num
+        AND i.matCode = m.matCode
+        AND i.deptNo = d.deptNo
+    </select>
+    <select id="findDayAll" parameterType="DeptMatParams" resultMap="deptMatDetailMap">
+        SELECT
+        a.createdate as createdate,
+        d.deptName as dedeptName,
+        m.matCode as matCode,
+        m.mName as mName,
+        m.type as mtype,
+        m.specifications as specifications ,
+        m.unitsOfMeasurement as unitsOfMeasurement,
+        m.price as price,
+        i.amount as amount,
+        i.cost as cost
+        FROM
+        applyorder a,
+        item i,
+        material m,
+        department d
+        WHERE
+        1=1
+        <choose>
+            <when test="start !=null and start !=''">
+                and a.createdate<![CDATA[>=]]> #{start}
+            </when>
+            <when test="end !=null and end !=''">
+                and a.createdate<![CDATA[<=]]> #{end}
+            </when>
+            <when test="deptNo != null and deptNo != ''">
+                and d.deptNo= #{deptNo}
+            </when>
+            <when test="deptName != null and deptName != ''">
+                and d.deptName= #{deptName}
+            </when>
+            <when test="matCode != null and matCode != ''">
+                and m.matCode= #{matCode}
+            </when>
+            <when test="matName != null and matName != ''">
+                and m.matName= #{matName}
+            </when>
+            <when test="mtype != null and mtype != ''">
+                and m.mtype= #{mtype}
+            </when>
+            <when test="specifications != null and specifications != ''">
+                and m.specifications= #{specifications}
+            </when>
+        </choose>
+         AND a.num = i.num
+         AND i.matCode = m.matCode
+         AND i.deptNo = d.deptNo
+    </select>
+
+</mapper>
