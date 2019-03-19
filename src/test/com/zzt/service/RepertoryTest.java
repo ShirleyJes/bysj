@@ -24,4 +24,12 @@ public class RepertoryTest {
             System.out.println(r.toString());
         }
     }
+    @Test
+    public void findAllTest(){
+        List<Repertory> repertoryList = repertoryService.findAll();
+        System.out.println("data length"+repertoryList.size());
+        for(Repertory r:repertoryList) {
+            System.out.println(r.toString());
+        }
+    }
 }

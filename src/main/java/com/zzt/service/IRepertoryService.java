@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IRepertoryService {
     List<Repertory> selectRepertory(Integer wNumber);
+    List<Repertory> findAll();
 }

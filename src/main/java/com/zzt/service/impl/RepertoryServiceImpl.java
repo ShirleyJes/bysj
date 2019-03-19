@@ -16,4 +16,9 @@ public class RepertoryServiceImpl implements IRepertoryService {
     public List<Repertory> selectRepertory(Integer wNumber) {
         return repertoryDao.selectRepertory(wNumber);
     }
+
+    @Override
+    public List<Repertory> findAll() {
+        return repertoryDao.findAll();
+    }
 }
