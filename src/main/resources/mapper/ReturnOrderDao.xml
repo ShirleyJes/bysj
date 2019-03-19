@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.zzt.dao.IReturnOrderDao">
+    <resultMap id="applicantMap" type="User">
+        <result property="username" column="applicantName"/>
+        <association property="department" javaType="Department">
+            <result property="deptName" column="deptName"/>
+        </association>
+    </resultMap>
+    <resultMap id="approverMap" type="User">
+        <result property="username" column="approverName"/>
+    </resultMap>
+    <resultMap id="vstateMap" type="State">
+        <result property="sname" column="vstateName"/>
+    </resultMap>
+    <resultMap id="fstateMap" type="State">
+        <result property="sname" column="fstateName"/>
+    </resultMap>
+    <resultMap id="showReturnOrdersMap" type="ReturnOrder">
+        <!--退料单号-->
+        <result property="rid" column="rid"/>
+        <!--申请日期-->
+        <result property="adate" column="adate"/>
+        <!--审核时间-->
+        <result property="verifyDate" column="verifyDate"/>
+        <!--退料说明-->
+        <result property="returnDescription" column="returnDescription"/>
+        <!--申请入库时间-->
+        <result property="rdate" column="rdate"/>
+       <!-- 入库完成时间-->
+        <result property="fdate" column="fdate"/>
+        <!--申请（登记）部门、申请（登记）人-->
+        <association property="applicant" resultMap="applicantMap"/>
+        <!--审核人-->
+        <association property="approver" resultMap="approverMap"/>
+        <!--入库完成状态-->
+        <association property="fstate" resultMap="fstateMap"/>
+       <!-- 审核状态-->
+        <association property="vstate" resultMap="vstateMap"/>
+    </resultMap>
+
+    <select id="showReturnOrders" resultMap="showReturnOrdersMap">
+        SELECT
+            r.rid,
+            r.adate,
+            d.deptName,
+            u1.username AS applicantName,
+            u2.username AS approverName,
+            r.verifyDate,
+            s1.sname AS vstateName,
+            r.returnDescription,
+            r.rdate,
+            s2.sname AS fstateName,
+            r.fdate
+        FROM
+            returnorder r,
+            USER u1,
+            department d,
+            USER u2,
+            state s1,
+            state s2
+        WHERE
+            r.applicantid = u1.id
+            AND r.approverid = u2.id
+            AND r.vsid = s1.sid
+            AND r.fsid = s2.sid
+            AND u1.deptNo = d.deptNo
+    </select>
+    <delete id="deleteReturnOrder"  parameterType="Integer">
+        delete from returnorder where rid=#{rid}
+    </delete>
+
+</mapper>
