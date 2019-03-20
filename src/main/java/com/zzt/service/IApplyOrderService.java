@@ -8,4 +8,5 @@ public interface IApplyOrderService {
     Integer addApplyOrder(ApplyOrder applyOrder);
     Integer deleteApplyOrder(Integer num);
     List<ApplyOrder> findAllApplyOrder();
+    List<ApplyOrder> findByApplyOrderState(Integer sid);
 }

@@ -3,13 +3,6 @@ package com.zzt.model;
 import java.util.Date;
 
 public class DeptMatDetail {
-    public Integer getDmdid() {
-        return dmdid;
-    }
-
-    public void setDmdid(Integer dmdid) {
-        this.dmdid = dmdid;
-    }
 
     public Date getCreatedate() {
         return createdate;
@@ -77,7 +70,7 @@ public class DeptMatDetail {
 //    price,
 //    amount,
 //    cost
-    private Integer dmdid;
+
     //申领日期
     private Date createdate;
     //部门

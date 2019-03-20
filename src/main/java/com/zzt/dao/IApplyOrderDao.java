@@ -10,4 +10,6 @@ public interface IApplyOrderDao {
     //维修领料单查询
     //查询全部/
     List<ApplyOrder> findAllApplyOrder();
+    //根据领料单状态查询
+    List<ApplyOrder> findByApplyOrderState(Integer sid);
 }

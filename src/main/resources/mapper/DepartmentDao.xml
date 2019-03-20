@@ -19,18 +19,18 @@
             <result property="price" column="price"/>
         </association>
     </resultMap>
-    <select id="findAll" resultType="DeptMatDetail" parameterType="com.zzt.model.DeptMatParams">
+    <select id="findAll" resultMap="deptMatDetailMap" parameterType="com.zzt.model.DeptMatParams">
       SELECT
-        a.createdate as createdate,
-        d.deptName as dedeptName,
-        m.matCode as matCode,
-        m.mName as mName,
-        m.type as type,
-        m.specifications as specifications ,
-        m.unitsOfMeasurement as unitsOfMeasurement,
-        m.price as price,
-        i.amount as amount,
-        i.cost as cost
+        a.createdate,
+        d.deptName,
+        m.matCode,
+        m.mName,
+        m.type,
+        m.specifications,
+        m.unitsOfMeasurement,
+        m.price,
+        i.amount,
+        i.cost
         FROM
         applyorder a,
         item i,
@@ -39,25 +39,25 @@
         WHERE
         1=1
         <choose>
-            <when test="deptNo != null and deptNo != ''">
-                and d.deptNo= #{deptNo}
-            </when>
-            <when test="deptName != null and deptName != ''">
-                and d.deptName= #{deptName}
-            </when>
-            <when test="matCode != null and matCode != ''">
-                and m.matCode= #{matCode}
-            </when>
-            <when test="mName != null and mName != ''">
-                and m.mName= #{mName}
-            </when>
-            <when test="mtype != null and mtype != ''">
-                and m.type= #{mtype}
-            </when>
-            <when test="specifications != null and specifications != ''">
-                and m.specifications= #{specifications}
-            </when>
-        </choose>
+        <when test="deptNo != null and deptNo != ''">
+            and d.deptNo= #{deptNo}
+        </when>
+        <when test="deptName != null and deptName != ''">
+            and d.deptName= #{deptName}
+        </when>
+        <when test="matCode != null and matCode != ''">
+            and m.matCode= #{matCode}
+        </when>
+        <when test="mName != null and mName != ''">
+            and m.mName= #{mName}
+        </when>
+        <when test="mtype != null and mtype != ''">
+            and m.type= #{mtype}
+        </when>
+        <when test="specifications != null and specifications != ''">
+            and m.specifications= #{specifications}
+        </when>
+    </choose>
         AND a.num = i.num
         AND i.matCode = m.matCode
         AND i.deptNo = d.deptNo

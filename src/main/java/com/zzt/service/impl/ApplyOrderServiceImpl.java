@@ -25,4 +25,9 @@ public class ApplyOrderServiceImpl implements IApplyOrderService {
     public List<ApplyOrder> findAllApplyOrder() {
         return applyOrderDao.findAllApplyOrder();
     }
+
+    @Override
+    public List<ApplyOrder> findByApplyOrderState(Integer sid) {
+        return applyOrderDao.findByApplyOrderState(sid);
+    }
 }

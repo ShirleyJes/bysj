@@ -39,4 +39,9 @@ public class ApplyOrderTest {
         List<ApplyOrder> applyOrderList=applyOrderService.findAllApplyOrder();
         System.out.println(applyOrderList.size());
     }
+    @Test
+    public void findByApplyOrderStateTest(){
+        List<ApplyOrder> applyOrderList=applyOrderService.findByApplyOrderState(2);
+        System.out.println(applyOrderList.size());
+    }
 }

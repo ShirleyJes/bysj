@@ -22,6 +22,9 @@ public class DepartmentServiceTest {
         DeptMatParams deptMatParams=new DeptMatParams();
         deptMatParams.setDeptNo(2);
         List<DeptMatDetail> list=iDepartmentService.findAll(deptMatParams);
+        for(DeptMatDetail deptMatDetail:list){
+            System.out.println(deptMatDetail.getMatCode());
+        }
         System.out.println(list.size());
     }
     @Test
