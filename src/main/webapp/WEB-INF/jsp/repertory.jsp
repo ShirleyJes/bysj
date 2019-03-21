@@ -25,6 +25,7 @@
     库存列表：
     <table width="100%" border=1>
         <tr>
+            <td>No.</td>
             <td>仓库编号</td>
             <td>仓库名字</td>
             <td>物料编号</td>
@@ -38,8 +39,10 @@
             <td>单价</td>
             <td>库存数量</td>
         </tr>
+        <%! int count = 1;%>
         <c:forEach items="${repertories }" var="item">
             <tr>
+                <td><%= count++%></td>
                 <td>${item.warehouse.wNumber }</td>
                 <td>${item.warehouse.wName }</td>
                 <td>${item.material.matCode }</td>

@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt_rt"%>
 <html>
 <head>
     <title>部门领料明细表</title>
@@ -22,6 +23,7 @@
     </table>
     <table width="100%" border=1>
         <tr>
+            <td>No.</td>
             <td>申领日期</td>
             <td>申领部门</td>
             <td>物料编码</td>
@@ -33,9 +35,11 @@
             <td>领料数量</td>
             <td>领料金额</td>
         </tr>
+        <%! int count = 1;%>
         <c:forEach items="${deptMatDetailList }" var="item">
             <tr>
-                <td>${item.createdate }</td>
+                <td><%= count++%></td>
+                <td><fmt:formatDate value="${item.createdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                 <td>${item.department.deptName }</td>
                 <td>${item.material.matCode}</td>
                 <td>${item.material.mName}</td>

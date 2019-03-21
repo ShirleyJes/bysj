@@ -19,4 +19,9 @@ public class ReturnOrderServiceImpl implements IReturnOrderService {
     public Integer deleteReturnOrder(Integer rid) {
         return iReturnOrderDao.deleteReturnOrder(rid);
     }
+
+    @Override
+    public List<ReturnOrder> selectByState(Integer vsid) {
+        return iReturnOrderDao.selectByState(vsid);
+    }
 }

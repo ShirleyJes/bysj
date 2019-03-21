@@ -13,4 +13,5 @@ public interface IReturnOrderDao {
     */
     List<ReturnOrder> showReturnOrders();
     Integer deleteReturnOrder(Integer rid);
+    List<ReturnOrder> selectByState(Integer vsid);
 }

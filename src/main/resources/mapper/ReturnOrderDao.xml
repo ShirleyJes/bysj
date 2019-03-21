@@ -72,4 +72,32 @@
         delete from returnorder where rid=#{rid}
     </delete>
 
+    <select id="selectByState" resultMap="showReturnOrdersMap">
+         SELECT
+            r.rid,
+            r.adate,
+            d.deptName,
+            u1.username AS applicantName,
+            u2.username AS approverName,
+            r.verifyDate,
+            s1.sname AS vstateName,
+            r.returnDescription,
+            r.rdate,
+            s2.sname AS fstateName,
+            r.fdate
+        FROM
+            returnorder r,
+            USER u1,
+            department d,
+            USER u2,
+            state s1,
+            state s2
+        WHERE
+            r.applicantid = u1.id
+            AND r.approverid = u2.id
+            AND r.vsid = s1.sid
+            AND r.fsid = s2.sid
+            AND u1.deptNo = d.deptNo
+            AND r.vsid=#{vsid}
+    </select>
 </mapper>

@@ -6,6 +6,7 @@ import com.zzt.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,6 +31,14 @@ public class ApplyOrderController {
         ModelAndView modelAndView=new ModelAndView();
         applyOrderService.deleteApplyOrder(num);
         List<ApplyOrder> applyOrderList=applyOrderService.findAllApplyOrder();
+        modelAndView.addObject("applyOrderList",applyOrderList);
+        modelAndView.setViewName("applyorder");
+        return modelAndView;
+    }
+    @RequestMapping("findByApplyOrderState/{sid}")
+    public ModelAndView findByApplyOrderState(@PathVariable("sid") Integer sid){
+        ModelAndView modelAndView=new ModelAndView();
+        List<ApplyOrder> applyOrderList=applyOrderService.findByApplyOrderState(sid);
         modelAndView.addObject("applyOrderList",applyOrderList);
         modelAndView.setViewName("applyorder");
         return modelAndView;

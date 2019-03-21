@@ -11,6 +11,9 @@
     <title>创建维修领料单</title>
 </head>
 <body>
-
+<table>
+    <tr>
+    </tr>
+</table>
 </body>
 </html>
