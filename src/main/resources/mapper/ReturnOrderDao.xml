@@ -18,6 +18,9 @@
     <resultMap id="fstateMap" type="State">
         <result property="sname" column="fstateName"/>
     </resultMap>
+    <resultMap id="cstateMap" type="State">
+        <result property="sname" column="cstateName"/>
+    </resultMap>
     <resultMap id="showReturnOrdersMap" type="ReturnOrder">
         <!--退料单号-->
         <result property="rid" column="rid"/>
@@ -39,8 +42,9 @@
         <association property="fstate" resultMap="fstateMap"/>
        <!-- 审核状态-->
         <association property="vstate" resultMap="vstateMap"/>
+        <!--检验状态-->
+        <association property="cstate" resultMap="cstateMap"/>
     </resultMap>
-
     <select id="showReturnOrders" resultMap="showReturnOrdersMap">
         SELECT
             r.rid,
@@ -53,19 +57,22 @@
             r.returnDescription,
             r.rdate,
             s2.sname AS fstateName,
-            r.fdate
+            r.fdate,
+            s3.sname AS cstateName
         FROM
             returnorder r,
             USER u1,
             department d,
             USER u2,
             state s1,
-            state s2
+            state s2,
+            state s3
         WHERE
             r.applicantid = u1.id
             AND r.approverid = u2.id
             AND r.vsid = s1.sid
             AND r.fsid = s2.sid
+            AND r.csid = s3.sid
             AND u1.deptNo = d.deptNo
     </select>
     <delete id="deleteReturnOrder"  parameterType="Integer">
@@ -100,4 +107,5 @@
             AND u1.deptNo = d.deptNo
             AND r.vsid=#{vsid}
     </select>
+
 </mapper>

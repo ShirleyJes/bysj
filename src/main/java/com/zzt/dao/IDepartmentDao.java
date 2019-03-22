@@ -11,5 +11,7 @@ public interface IDepartmentDao {
     //1、部门明细查询
     List<DeptMatDetail> findAll(DeptMatParams deptMatParams);
     //2、部门日报表
-    List<DeptMatDetail> findDayAll(@Param("start") Date start,@Param("end") Date end, DeptMatParams deptMatParams);
+    List<DeptMatDetail> findDayAll(DeptMatParams deptMatParams);
+    //3、部门月报表
+    List<DeptMatDetail> findMonthAll(DeptMatParams deptMatParams);
 }

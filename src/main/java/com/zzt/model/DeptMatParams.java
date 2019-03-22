@@ -12,9 +12,29 @@ public class DeptMatParams {
     //物料名称
     private String mName;
     //类型名称
-    private String mtype;
+    private String type;
     //规格型号
     private String specifications;
+    private Date start;
+    private Date end;
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    //
+
     public Integer getDeptNo() {
         return deptNo;
     }
@@ -47,12 +67,12 @@ public class DeptMatParams {
         this.mName = mName;
     }
 
-    public String getMtype() {
-        return mtype;
+    public String getType() {
+        return type;
     }
 
-    public void setMtype(String mtype) {
-        this.mtype = mtype;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getSpecifications() {

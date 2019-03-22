@@ -23,17 +23,15 @@
         <td><a href="${pageContext.request.contextPath }/department/departmentDetail">部门领料明细表</a></td>
     </tr>
     <tr>
-        <td><a href="#">部门领料日报表</a></td>
+        <td><a href="${pageContext.request.contextPath }/department/departmentDayDetail">部门领料日报表</a></td>
     </tr>
     <tr>
-        <td><a href="#">部门领料月报表</a></td>
+        <td><a href="${pageContext.request.contextPath }/department/departmentMonDetail">部门领料月报表</a></td>
     </tr>
     <tr>
         <td><a href="${pageContext.request.contextPath }/returnOrder/returnOrderList">退料单管理</a></td>
     </tr>
-    <tr>
-        <td><a href="#">退料单查询</a></td>
-    </tr>
+
 </table>
 </body>
 </html>

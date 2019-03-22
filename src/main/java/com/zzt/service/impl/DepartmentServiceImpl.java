@@ -19,7 +19,12 @@ public class DepartmentServiceImpl implements IDepartmentService {
     }
 
     @Override
-    public List<DeptMatDetail> findDayAll(Date start, Date end, DeptMatParams deptMatParams) {
-        return iDepartmentDao.findDayAll(start,end,deptMatParams);
+    public List<DeptMatDetail> findDayAll(DeptMatParams deptMatParams) {
+        return iDepartmentDao.findDayAll(deptMatParams);
+    }
+
+    @Override
+    public List<DeptMatDetail> findMonthAll(DeptMatParams deptMatParams) {
+        return iDepartmentDao.findMonthAll(deptMatParams);
     }
 }

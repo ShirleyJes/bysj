@@ -32,6 +32,7 @@
             <td>审核时间</td>
             <td>审核状态</td>
             <td>退料说明</td>
+            <td>检验状态</td>
             <td>申请入库时间</td>
             <td>入库完成状态</td>
             <td>入库完成时间</td>
@@ -49,6 +50,7 @@
                 <td><fmt:formatDate value="${item.verifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                 <td>${item.vstate.sname}</td>
                 <td>${item.returnDescription}</td>
+                <td>${item.cstate.sname}</td>
                 <td><fmt:formatDate value="${item.rdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                 <td>${item.fstate.sname}</td>
                 <td><fmt:formatDate value="${item.fdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>

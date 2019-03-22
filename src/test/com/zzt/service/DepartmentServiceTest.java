@@ -1,5 +1,6 @@
 package com.zzt.service;
 
+import com.zzt.dao.IDepartmentDao;
 import com.zzt.model.DeptMatDetail;
 import com.zzt.model.DeptMatParams;
 import org.junit.Test;
@@ -30,12 +31,25 @@ public class DepartmentServiceTest {
     @Test
     public void findDayAll() throws Exception{
         DeptMatParams deptMatParams=new DeptMatParams();
-        deptMatParams.setDeptNo(1);
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date start = sp.parse("2019-03-14 00:00:00");
-        Date end=sp.parse("2019-03-14 23:59:59");
-        List<DeptMatDetail> list=iDepartmentService.findDayAll(start,end,deptMatParams);
+        Date end   = sp.parse("2019-03-14 23:59:59");
+        deptMatParams.setStart(start);
+       deptMatParams.setEnd(end);
+        List<DeptMatDetail> list=iDepartmentService.findDayAll(deptMatParams);
         System.out.println(list.size());
 
     }
+
+    @Test
+    public void findMonthAll() throws Exception{
+        DeptMatParams deptMatParams=new DeptMatParams();
+        SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM");
+        Date start = sp.parse("2018-04");
+        deptMatParams.setStart(start);
+        List<DeptMatDetail> list=iDepartmentService.findMonthAll(deptMatParams);
+        System.out.println(list.size());
+
+    }
+
 }

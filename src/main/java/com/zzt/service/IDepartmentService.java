@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface IDepartmentService {
     List<DeptMatDetail> findAll(DeptMatParams deptMatParams);
-    List<DeptMatDetail> findDayAll(@Param("start") Date start, @Param("end") Date end, DeptMatParams deptMatParams);
+    List<DeptMatDetail> findDayAll( DeptMatParams deptMatParams);
+    List<DeptMatDetail> findMonthAll(DeptMatParams deptMatParams);
 }
