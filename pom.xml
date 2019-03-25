@@ -144,6 +144,12 @@
       <artifactId>druid</artifactId>
       <version>${druid.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.googlecode.rapid-framework</groupId>
+      <artifactId>rapid-core</artifactId>
+      <version>4.0.5</version>
+    </dependency>
   </dependencies>
 
   <build>
