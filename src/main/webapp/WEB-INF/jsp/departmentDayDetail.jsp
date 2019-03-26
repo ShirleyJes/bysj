@@ -48,4 +48,4 @@
     </div>
     </div>
 </rapid:override>
-<%@ include file="../../index.jsp"%>
+<%@ include file="base.jsp"%>

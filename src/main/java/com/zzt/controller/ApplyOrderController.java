@@ -2,10 +2,8 @@ package com.zzt.controller;
 
 import com.zzt.model.ApplyOrder;
 import com.zzt.service.IApplyOrderService;
-import com.zzt.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;

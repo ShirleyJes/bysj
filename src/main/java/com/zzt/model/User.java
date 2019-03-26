@@ -6,8 +6,8 @@ public class User {
     private String email;
     private String mobile;
     private String username;
-    private String role;
     private int deptNo;
+    private String psw;
     private Department department;
 
     public long getId() {
@@ -42,14 +42,6 @@ public class User {
         this.username = username;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public int getDeptNo() {
         return deptNo;
     }
@@ -66,6 +58,14 @@ public class User {
         this.department = department;
     }
 
+    public String getPsw() {
+        return psw;
+    }
+
+    public void setPsw(String psw) {
+        this.psw = psw;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -73,7 +73,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", username='" + username + '\'' +
-                ", role='" + role + '\'' +
                 ", deptNo=" + deptNo +
                 '}';
     }

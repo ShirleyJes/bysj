@@ -1,26 +1,34 @@
 package com.zzt.controller;
 
-import com.zzt.model.User;
 import com.zzt.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
 @RequestMapping("/user")
+@SessionAttributes("uer")
 public class UserController {
 
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/select")
-    public ModelAndView selectUser() throws Exception {
+
+    @RequestMapping("/login")
+    public ModelAndView loginByName(String username,String psw)  {
         ModelAndView mv = new ModelAndView();
-        User user = userService.selectUser(1);
-        mv.addObject("user", user);
-        mv.setViewName("user");
+       boolean flag = userService.loginByName(username,psw);
+        if(flag){
+            System.out.println("登录成功");
+            mv.addObject("msg", "登录成功");
+            mv.setViewName("repertory");
+        }else {
+            mv.addObject("msg", "登录失败");
+            mv.setViewName("login");
+        }
         return mv;
     }
 }

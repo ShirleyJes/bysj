@@ -4,5 +4,11 @@ import com.zzt.model.User;
 
 public interface IUserService {
 
-    User selectUser(long userId);
+    //检验用户登录
+    boolean loginByName(String username,String psw);
+    boolean loginByEmail(String email,String psw);
+    boolean loginByMobile(String mobile,String psw);
+    //注册
+    void register(User user);
+
 }

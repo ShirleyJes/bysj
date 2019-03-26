@@ -22,24 +22,25 @@
                         <td><input type="submit" value="查询"/></td>
                     </tr>
                 </table>
+            </form>
+            <table class="layui-hide" id="test"></table>
                 库存列表：
-                <table width="100%" border=1>
-                    <tr>
-                        <td>No.</td>
-                        <td>仓库编号</td>
-                        <td>仓库名字</td>
-                        <td>物料编号</td>
-                        <td>物料名称</td>
-                        <td>助记码</td>
-                        <td>类型编码</td>
-                        <td>类型</td>
-                        <td>规格说明</td>
-                        <td>生产厂家</td>
-                        <td>计量单位</td>
-                        <td>单价</td>
-                        <td>库存数量</td>
-                    </tr>
-
+                    <table width="100%" border=1>
+                       <tr>
+                            <td>No.</td>
+                            <td>仓库编号</td>
+                            <td>仓库名字</td>
+                            <td>物料编号</td>
+                            <td>物料名称</td>
+                            <td>助记码</td>
+                            <td>类型编码</td>
+                            <td>类型</td>
+                            <td>规格说明</td>
+                            <td>生产厂家</td>
+                            <td>计量单位</td>
+                            <td>单价</td>
+                            <td>库存数量</td>
+                        </tr>
                     <c:forEach items="${repertories }" var="item"  varStatus="status">
                         <tr>
                             <td>${status.index+1}</td>
@@ -58,10 +59,38 @@
                         </tr>
                     </c:forEach>
                 </table>
-            </form>
+
         </div>
     </div>
 </rapid:override>
-<%@ include file="../../index.jsp"%>
+
+<%--
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:'${pageContext.request.contextPath }/repertory/findAll'
+            ,cols: [[
+                {field:'wNumber', width:80, title: '仓库编号'}
+                ,{field:'wName', width:80, title: '仓库名称'}
+                ,{field:'matCode', width:80, title: '物料编码'}
+                ,{field:'mName', width:80, title: '物料名称'}
+                ,{field:'mnemonicCode', title: '助记码'}
+                ,{field:'typeCode', width:80, title: '类型编码'}
+                ,{field:'type', width:80, title: '类型'}
+                ,{field:'specifications', width:80, title: '规格型号'}
+                ,{field:'manufacturer', width:135, title: '生产厂家'}
+                ,{field:'unitsOfMeasurement', width:135, title: '单位'}
+                ,{field:'price', width:135, title: '单价'}
+                ,{field:'amount', width:135, title: '库存数量'}
+            ]]
+            ,page: true
+        });
+    });
+</script>
+--%>
+<%@ include file="base.jsp"%>
 
 

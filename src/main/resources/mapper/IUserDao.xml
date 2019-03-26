@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.zzt.dao.IUserDao">
+
+    <select id="selectUser" parameterType="User" resultType="User">
+         SELECT * FROM USER
+              WHERE  1=1
+                     <choose>
+                        <when test="username != null and username !=''">
+                        and username=#{username}
+                        </when>
+                         <when test="email != null and email !=''">
+                             and email=#{email}
+                         </when>
+                         <when test="mobile != null and mobile !=''">
+                             and mobile=#{mobile}
+                         </when>
+                     </choose>
+    </select>
+    <insert id="insertUser" parameterType="User">
+        insert into user(username,email,mobile,deptNo,psw)
+         values (#{username},#{email}，#{mobile},#{dept},#{psw})
+    </insert>
+</mapper>

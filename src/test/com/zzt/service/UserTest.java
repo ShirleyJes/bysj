@@ -16,9 +16,10 @@ public class UserTest {
     private IUserService userService;
 
     @Test
-    public void selectUserTest(){
-        User user = userService.selectUser(1);
-        System.out.println(user.toString());
+    public void loginTest(){
+        String username="张智涛";
+        String psw="123456";
+        System.out.println(userService.loginByName(username,psw));
     }
 
 }

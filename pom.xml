@@ -150,6 +150,12 @@
       <artifactId>rapid-core</artifactId>
       <version>4.0.5</version>
     </dependency>
+    <!--分页插件-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>4.1.1</version>
+    </dependency>
   </dependencies>
 
   <build>
