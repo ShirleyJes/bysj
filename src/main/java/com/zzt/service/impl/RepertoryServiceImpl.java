@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zzt.dao.IRepertoryDao;
 import com.zzt.model.Repertory;
+import com.zzt.model.Warehouse;
 import com.zzt.service.IRepertoryService;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +15,23 @@ import java.util.List;
 public class RepertoryServiceImpl implements IRepertoryService {
     @Resource
     private IRepertoryDao repertoryDao;
+    private int pageSize=5;
     @Override
-    public List<Repertory> selectRepertory(Integer wNumber) {
-        return repertoryDao.selectRepertory(wNumber);
+    public PageInfo<Repertory> selectRepertory(int page,Warehouse warehouse) {
+        PageHelper.startPage(page,pageSize);
+        List<Repertory> list=repertoryDao.selectRepertory(warehouse);
+        return new PageInfo<Repertory>(list);
     }
 
-    /*@Override
-    public PageInfo<Repertory> findAll(int page, int pageSize) {
+    @Override
+    public PageInfo<Repertory> findAll(int page) {
         PageHelper.startPage(page,pageSize);
         List<Repertory> list=repertoryDao.findAll();
         return new PageInfo<Repertory>(list);
-    }*/
+    }
 
-    @Override
+   /* @Override
     public List<Repertory> findAll() {
         return repertoryDao.findAll();
-    }
+    }*/
 }

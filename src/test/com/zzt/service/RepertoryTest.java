@@ -1,5 +1,6 @@
 package com.zzt.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zzt.model.Repertory;
 import com.zzt.model.User;
 import org.junit.Test;
@@ -16,20 +17,19 @@ public class RepertoryTest {
     @Resource
     private IRepertoryService repertoryService;
 
-    @Test
+    /*  @Test
     public void selectRepertoryTest(){
-        List<Repertory> repertoryList = repertoryService.selectRepertory(1);
-        System.out.println("data length"+repertoryList.size());
-        for(Repertory r:repertoryList) {
-            System.out.println(r.toString());
-        }
-    }
-    /*@Test
+         List<Repertory> repertoryList = repertoryService.selectRepertory(1);
+         System.out.println("data length"+repertoryList.size());
+         for(Repertory r:repertoryList) {
+             System.out.println(r.toString());
+         }
+     }*/
+    @Test
     public void findAllTest(){
-        List<Repertory> repertoryList = repertoryService.findAll();
-        System.out.println("data length"+repertoryList.size());
-        for(Repertory r:repertoryList) {
-            System.out.println(r.toString());
-        }
-    }*/
+        PageInfo<Repertory> repertoryPageInfo = repertoryService.findAll(1);
+        List<Repertory> list=repertoryPageInfo.getList();
+        System.out.println("data length"+list.size());
+
+    }
 }

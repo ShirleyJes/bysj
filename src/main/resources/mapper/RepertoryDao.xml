@@ -23,7 +23,7 @@
         </association>
 
     </resultMap>
-    <select id="selectRepertory" resultMap="repertoryMap" parameterType="Integer">
+    <select id="selectRepertory" resultMap="repertoryMap" parameterType="Warehouse">
         SELECT
             mw.mwid,
             w.wNumber,
@@ -45,7 +45,12 @@
         WHERE
             mw.matCode = m.matCode
             AND mw.wNumber = w.wNumber
-            AND mw.wNumber =#{wNumber}
+            <if test="wNumber != null and wNumber != ''">
+                AND w.wNumber =#{wNumber}
+            </if>
+            <if test="wName != null and wName != ''">
+            AND w.wName =#{wName}
+            </if>
     </select>
     <select id="findAll" resultMap="repertoryMap">
         SELECT

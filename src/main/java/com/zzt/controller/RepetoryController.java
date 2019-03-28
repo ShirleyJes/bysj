@@ -2,6 +2,7 @@ package com.zzt.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.zzt.model.Repertory;
+import com.zzt.model.Warehouse;
 import com.zzt.service.IRepertoryService;
 import com.zzt.service.impl.RepertoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,30 +23,27 @@ public class RepetoryController {
     @Autowired
     private IRepertoryService repertoryService;
     @RequestMapping("/select")
-    public ModelAndView selectRepertory(String wNumber){
+    public ModelAndView selectRepertory(@RequestParam(value = "page" ,defaultValue="1") int page,Warehouse warehouse){
         ModelAndView modelAndView =  new ModelAndView();
-        System.out.println(wNumber);
-        List<Repertory> repertories=repertoryService.selectRepertory(Integer.valueOf(wNumber));
-        modelAndView.addObject("repertories",repertories);
+        PageInfo<Repertory> repertoryPageInfo=repertoryService.selectRepertory(page,warehouse);
+        modelAndView.addObject("repertoryPageInfo",repertoryPageInfo);
         modelAndView.setViewName("repertory");
         return modelAndView;
     }
-    @RequestMapping("/findAll")
+   /* @RequestMapping("/findAll")
     public ModelAndView findAllRepertory(){
         ModelAndView modelAndView=new ModelAndView();
         List<Repertory> repertories=repertoryService.findAll();
         modelAndView.addObject("repertories",repertories);
         modelAndView.setViewName("repertory");
         return modelAndView;
-    }
-    /*@RequestMapping("/findAll")
-    @ResponseBody
-    public Map<String, Object> findAllRepertory(int page, int pageSize){
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        PageInfo<Repertory> repertoryPageInfo=repertoryService.findAll(page,pageSize);
-        resultMap.put("total", repertoryPageInfo.getTotal());
-        //获取每页数据
-        resultMap.put("rows", repertoryPageInfo.getList());
-        return resultMap;
     }*/
+    @RequestMapping("/findAll")
+    public ModelAndView findAllRepertory(@RequestParam(value = "page" ,defaultValue="1") int page){
+        ModelAndView modelAndView=new ModelAndView();
+        PageInfo<Repertory> repertoryPageInfo=repertoryService.findAll(page);
+        modelAndView.addObject("repertoryPageInfo",repertoryPageInfo);
+        modelAndView.setViewName("repertory");
+        return modelAndView;
+    }
 }
