@@ -1,4 +1,5 @@
 package com.zzt.service;
+import com.github.pagehelper.PageInfo;
 import com.zzt.model.ApplyOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,14 +35,15 @@ public class ApplyOrderTest {
     public void deleteApplyOrderTest(){
         applyOrderService.deleteApplyOrder(11);
     }
-    @Test
+   @Test
     public void findAllApplyOrderTest(){
-        List<ApplyOrder> applyOrderList=applyOrderService.findAllApplyOrder();
-        System.out.println(applyOrderList.size());
+         PageInfo<ApplyOrder> pageInfo=applyOrderService.findAllApplyOrder(2);
+
+        System.out.println(pageInfo.getList().size());
     }
-    @Test
+   /* @Test
     public void findByApplyOrderStateTest(){
         List<ApplyOrder> applyOrderList=applyOrderService.findByApplyOrderState(2);
         System.out.println(applyOrderList.size());
-    }
+    }*/
 }

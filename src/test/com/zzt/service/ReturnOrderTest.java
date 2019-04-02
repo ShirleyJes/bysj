@@ -14,11 +14,11 @@ import java.util.List;
 public class ReturnOrderTest {
     @Resource
     private IReturnOrderService iReturnOrderService;
-    @Test
+   /* @Test
     public void showReturnOrdersTest(){
         List<ReturnOrder> list=iReturnOrderService.showReturnOrders();
         System.out.println(list.size());
-    }
+    }*/
     @Test
     public void deleteReturnOrderTest(){
         iReturnOrderService.deleteReturnOrder(3);

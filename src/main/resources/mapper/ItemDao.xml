@@ -11,4 +11,29 @@
     <delete id="deleteItem"  parameterType="integer">
         delete from item where itemid=#{itemid}
     </delete>
+    <update id="updateItem" parameterType="Item">
+        update item  set
+        <if test="amount!= null and amount != ''">
+            amount=#{amount}
+        </if>
+        <if test="description!= null and description != ''">
+           ,description=#{description}
+        </if>
+        <if test="deptNo!= null and deptNo != ''">
+            ,deptNo=#{deptNo}
+        </if>
+    </update>
+    <select id="findByNum" resultType="Item">
+
+    </select>
+    <select id="showMaterial" resultType="Material">
+        SELECT
+            m.matCode,
+            m.mName,
+            m.specifications,
+            m.toalAmount,
+            m.unitsOfMeasurement
+        FROM
+            material m
+    </select>
 </mapper>

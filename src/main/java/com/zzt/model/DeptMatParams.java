@@ -1,8 +1,24 @@
 package com.zzt.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class DeptMatParams {
+    @Override
+    public String toString() {
+        return "DeptMatParams{" +
+                "deptNo=" + deptNo +
+                ", deptName='" + deptName + '\'' +
+                ", matCode=" + matCode +
+                ", mName='" + mName + '\'' +
+                ", type='" + type + '\'' +
+                ", specifications='" + specifications + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                '}';
+    }
+
     //部门编码
     private Integer deptNo;
    //查询部门
@@ -15,6 +31,7 @@ public class DeptMatParams {
     private String type;
     //规格型号
     private String specifications;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date start;
     private Date end;
     public Date getStart() {

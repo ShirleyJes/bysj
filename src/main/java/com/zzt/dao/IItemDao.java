@@ -10,5 +10,9 @@ import java.util.List;
 public interface IItemDao {
     Integer addItem(Item item);
     Integer deleteItem(Integer itemid);
-
+    Integer updateItem(Item item);
+    //通过订单号查找所有订单下的item
+    List<Item> findByNum(Integer num);
+    //显示material的一些属性
+    List<Material> showMaterial();
 }

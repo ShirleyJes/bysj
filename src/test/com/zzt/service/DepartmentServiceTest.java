@@ -1,5 +1,6 @@
 package com.zzt.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zzt.dao.IDepartmentDao;
 import com.zzt.model.DeptMatDetail;
 import com.zzt.model.DeptMatParams;
@@ -19,6 +20,15 @@ public class DepartmentServiceTest {
     @Resource
     private IDepartmentService iDepartmentService;
     @Test
+    public void findAll(){
+        DeptMatParams deptMatParams=new DeptMatParams();
+        PageInfo<DeptMatDetail> deptMatDetailPageInfo=iDepartmentService.findAll(1,deptMatParams);
+        System.out.println("第2页长度: "+deptMatDetailPageInfo.getList().size());
+        for(DeptMatDetail deptMatDetail:deptMatDetailPageInfo.getList()){
+            System.out.println(deptMatDetail.getMatCode());
+        }
+    }
+   /* @Test
     public void findAllTest(){
         DeptMatParams deptMatParams=new DeptMatParams();
         deptMatParams.setDeptNo(2);
@@ -27,21 +37,19 @@ public class DepartmentServiceTest {
             System.out.println(deptMatDetail.getMatCode());
         }
         System.out.println(list.size());
-    }
+    }*/
     @Test
     public void findDayAll() throws Exception{
         DeptMatParams deptMatParams=new DeptMatParams();
-        SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        Date start = sp.parse("2019-03-14 00:00:00");
-        Date end   = sp.parse("2019-03-14 23:59:59");
+        SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
+        Date start = sp.parse("2019-03-07");
         deptMatParams.setStart(start);
-       deptMatParams.setEnd(end);
-        List<DeptMatDetail> list=iDepartmentService.findDayAll(deptMatParams);
+        List<DeptMatDetail> list=iDepartmentService.findDayAll1(deptMatParams);
         System.out.println(list.size());
 
     }
 
-    @Test
+  /*  @Test
     public void findMonthAll() throws Exception{
         DeptMatParams deptMatParams=new DeptMatParams();
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM");
@@ -50,6 +58,6 @@ public class DepartmentServiceTest {
         List<DeptMatDetail> list=iDepartmentService.findMonthAll(deptMatParams);
         System.out.println(list.size());
 
-    }
+    }*/
 
 }

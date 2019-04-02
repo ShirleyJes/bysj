@@ -8,10 +8,11 @@
         <result property="amount" column="amount"/>
         <result property="createdate" column="createdate"/>
         <association property="department" javaType="Department">
+            <id property="deptNo" column="deptNo"/>
             <result property="deptName" column="deptName"/>
         </association>
         <association property="material" javaType="Material">
-            <result property="matCode" column="matCode"/>
+            <id property="matCode" column="matCode"/>
             <result property="mName" column="mName"/>
             <result property="type" column="type"/>
             <result property="specifications" column="specifications"/>
@@ -62,7 +63,7 @@
         AND i.matCode = m.matCode
         AND i.deptNo = d.deptNo
     </select>
-    <select id="findDayAll" parameterType="DeptMatParams" resultMap="deptMatDetailMap">
+    <select id="findDayAll" resultMap="deptMatDetailMap" parameterType="com.zzt.model.DeptMatParams">
         SELECT
         a.createdate ,
         d.deptName,
@@ -81,11 +82,8 @@
         department d
         WHERE
         1=1
-        <if test="end !=null and end !=''">
-            and a.createdate<![CDATA[<=]]> #{end}
-        </if>
         <if test="start !=null and start !=''">
-            and a.createdate<![CDATA[>=]]> #{start}
+            and date_format( a.createdate, '%Y-%m-%d' ) = date_format( #{start}, '%Y-%m-%d' )
         </if>
         <if test="deptNo != null and deptNo != ''">
             and d.deptNo= #{deptNo}
@@ -110,7 +108,7 @@
          AND i.matCode = m.matCode
          AND i.deptNo = d.deptNo
     </select>
-    <select id="findMonthAll" parameterType="DeptMatParams" resultMap="deptMatDetailMap">
+    <select id="findMonthAll" resultMap="deptMatDetailMap" parameterType="com.zzt.model.DeptMatParams">
         SELECT
         a.createdate ,
         d.deptName ,
