@@ -58,8 +58,8 @@
                         <c:forEach items="${applyOrderPageInfo.list }" var="item" varStatus="status">
                             <tr>
                                 <td>${status.index+1}</td>
-                                <td>
-                                    <a href="#">删除</a>
+                                <td style="text-align:center;">
+                                    [<a href="${pageContext.request.contextPath}/applyorder/deleteApplyOrder/${item.num}">删除</a>]
                                 </td>
                                 <td>${item.state.sname }</td>
                                 <td><fmt:formatDate value="${item.createdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>

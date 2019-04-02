@@ -67,7 +67,9 @@
                                 <td><fmt:formatDate value="${item.rdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                 <td>${item.fstate.sname}</td>
                                 <td><fmt:formatDate value="${item.fdate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-                                <td></td>
+                                <td style="text-align:center;">
+                                    [<a href="${pageContext.request.contextPath}/returnOrder/delete/${item.rid}">删除</a>]
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

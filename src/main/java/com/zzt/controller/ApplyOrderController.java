@@ -67,5 +67,10 @@ public class ApplyOrderController {
         modelAndView.setViewName("createApplyOrder");
         return  modelAndView;
     }
+    @RequestMapping("deleteApplyOrder/{num}")
+    public String deleteApplyOrder(@PathVariable("num")Integer num){
+        applyOrderService.deleteApplyOrder(num);
+        return "redirect:/applyorder/applyorderList";
+    }
 
 }

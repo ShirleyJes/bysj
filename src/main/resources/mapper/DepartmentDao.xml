@@ -38,8 +38,7 @@
         material m,
         department d
         WHERE
-        1=1
-
+        a.flag=1
         <if test="deptNo != null and deptNo != ''">
             and d.deptNo= #{deptNo}
         </if>
@@ -81,7 +80,7 @@
         material m,
         department d
         WHERE
-        1=1
+        a.flag=1
         <if test="start !=null and start !=''">
             and date_format( a.createdate, '%Y-%m-%d' ) = date_format( #{start}, '%Y-%m-%d' )
         </if>
@@ -126,7 +125,7 @@
         material m,
         department d
         WHERE
-        1=1
+        a.flag=1
         <if test="start !=null and start !=''">
             and date_format(a.createdate,'%Y-%m') = date_format(#{start},'%Y-%m')
         </if>

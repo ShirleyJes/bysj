@@ -33,5 +33,11 @@ public class ReturnOrderController {
         modelAndView.setViewName("returnOrderManage");
         return modelAndView;
     }
+    @RequestMapping("delete/{rid}")
+    public String delete(@PathVariable("rid")Integer rid){
+
+        returnOrderService.deleteReturnOrder(rid);
+        return "redirect:/returnOrder/returnOrderList";
+    }
 
 }

@@ -36,7 +36,7 @@
     </insert>
 
     <delete id="deleteApplyOrder"  parameterType="integer">
-        delete from applyorder where num= #{num}
+        update applyorder set flag=0 where num= #{num}
     </delete>
 
     <select id="findAllApplyOrder" resultMap="applyOrderMap">
@@ -61,6 +61,7 @@
             department d2
         WHERE
             a.applicantid = u1.id
+            AND a.flag=1
             AND a.approverid = u2.id
             AND a.sid = s.sid
             AND u1.deptNo = d1.deptNo
@@ -88,6 +89,7 @@
             department d2
         WHERE
             a.applicantid = u1.id
+            AND a.flag=1
             AND a.approverid = u2.id
             AND a.sid = s.sid
             AND u1.deptNo = d1.deptNo

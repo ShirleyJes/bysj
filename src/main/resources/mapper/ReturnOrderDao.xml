@@ -69,15 +69,16 @@
             state s3
         WHERE
             r.applicantid = u1.id
+            AND r.status=1
             AND r.approverid = u2.id
             AND r.vsid = s1.sid
             AND r.fsid = s2.sid
             AND r.csid = s3.sid
             AND u1.deptNo = d.deptNo
     </select>
-    <delete id="deleteReturnOrder"  parameterType="Integer">
-        delete from returnorder where rid=#{rid}
-    </delete>
+    <update id="deleteReturnOrder"  parameterType="Integer">
+        update returnorder  set status = 0 where rid=#{rid}
+    </update>
 
     <select id="selectByState" resultMap="showReturnOrdersMap">
          SELECT
@@ -101,6 +102,7 @@
             state s2
         WHERE
             r.applicantid = u1.id
+            AND r.status=1
             AND r.approverid = u2.id
             AND r.vsid = s1.sid
             AND r.fsid = s2.sid
