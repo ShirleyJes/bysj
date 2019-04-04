@@ -7,13 +7,11 @@ import com.zzt.service.IApplyOrderService;
 import com.zzt.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/applyorder")
@@ -57,7 +55,9 @@ public class ApplyOrderController {
         return  modelAndView;
     }*/
     @RequestMapping("showMaterial")
-    public @ResponseBody  PageInfo<Material> showMaterial(@RequestParam(value = "page" ,defaultValue="1")int page){
+    public @ResponseBody  PageInfo<Material> showMaterial(@RequestBody Map<String,String> map){
+        int page=Integer.valueOf(map.get("page"));
+        System.out.println(page);
         PageInfo<Material> materialPageInfo=itemService.showMaterial(page);
         return  materialPageInfo;
     }

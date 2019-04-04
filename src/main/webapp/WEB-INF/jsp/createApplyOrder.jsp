@@ -17,7 +17,6 @@
     <div class="wrapper">
         <div class="middle">
             <h1 style="padding: 50px 0 20px;">创建维修领料单</h1>
-
             <form action="#" method="post">
                 <table class="gridtable" style="width:100%;">
                     <tr>
@@ -39,84 +38,41 @@
                 </table>
                 <table class="gridtable" style="width:100%;">
                     <tr>
-                        <th><input type="button" value="添加领用物资" onclick="showMaterial()"/></th>
+                        <th><input type="button" value="添加领用物资" onclick="showMaterial(1)"/></th>
                         <th ><a href="#">保存</a></th>
 
                         <th ><a href="#">物料查询</a></th>
                         <td><input type="text" name="" value=""/></td>
                     </tr>
                 </table>
-            </form>
-            <c:if test="${materialPageInfo!=null}">
-                <table class="gridtable" style="width:100%;">
+                <table id="result" class="gridtable" style="width:100%;">
                     <thead>
-                    <tr>
-                        <th>操作</th>
-                        <th>物料编号</th>
-                        <th>物料名称</th>
-                        <th>规格说明</th>
-                        <th>剩余库存</th>
-                        <th>计量单位</th>
-                        <th>单价</th>
-                        <th>本次申领数量</th>
-                        <th>使用说明</th>
-                        <th>使用部门</th>
-                        <th>项目总额</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    <c:forEach items="${materialPageInfo.list}" var="item">
                         <tr>
-                            <td style="text-align:center;">
-                                [<a href="#">添加</a>] -
-                                [<a href="#">删除</a>]
-                            </td>
-                            <td>${item.matCode}</td>
-                            <td>${item.mName}</td>
-                            <td>${item.specifications}</td>
-                            <td>${item.totalAmount}</td>
-                            <td>${item.unitsOfMeasurement}</td>
-                            <td><input style="width:50px;height:30px;"id="price" type="text" onchange="cheng()"></td>
-                            <td><input style="width:50px;height:30px;" id="count" type="text" onchange="cheng()"></td>
-                            <td><textarea name="deccription">     </textarea></td>
-                            <td><select>
-                                <option value ="volvo">A部门</option>
-                                <option value ="saab">B部门</option>
-                                <option value="opel">C部门</option>
-                                <option value="audi">D部门</option>
-                            </select>
-                            </td>
-                            <td><input style="width:60px;height:30px;"id="total"type="text"></td>
+                            <th>操作</th>
+                            <th>物料编号</th>
+                            <th>物料名称</th>
+                            <th>规格说明</th>
+                            <th>剩余库存</th>
+                            <th>计量单位</th>
+                            <th>单价</th>
+                            <th>本次申领数量</th>
+                            <th>使用说明</th>
+                            <th>使用部门</th>
+                            <th>项目总额</th>
                         </tr>
-                    </c:forEach>
-                    </tbody>
+                        </thead >
+
+                        <tbody id="tbody">
+
+                        </tbody>
                 </table>
-                <table class="gridtable" style="width:100%;text-align: center;">
-                    <tr>
-                        <c:if test="${materialPageInfo.hasPreviousPage}">
-                            <td>
-                                <a href="${pageContext.request.contextPath}/applyorder/createApplyOrder?page=${applyOrderPageInfo.prePage}">前一页</a>
-                            </td>
-                        </c:if>
-                        <c:forEach items="${materialPageInfo.navigatepageNums}" var="nav">
-                            <c:if test="${nav == materialPageInfo.pageNum}">
-                                <td style="font-weight: bold;">${nav}</td>
-                            </c:if>
-                            <c:if test="${nav != materialPageInfo.pageNum}">
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/applyorder/createApplyOrder?page=${nav}">${nav}</a>
-                                </td>
-                            </c:if>
-                        </c:forEach>
-                        <c:if test="${materialPageInfo.hasNextPage}">
-                            <td>
-                                <a href="${pageContext.request.contextPath}/applyorder/createApplyOrder?page=${materialPageInfo.nextPage}">下一页</a>
-                            </td>
-                        </c:if>
-                    </tr>
+                <%--以下是分页--%>
+                <table  id="pageTable" class="gridtable" style="width:100%;text-align: center;">
+
                 </table>
-            </c:if>
+
+            </form>
+
         </div>
         <div class="push"></div>
 
@@ -132,7 +88,7 @@
 <script>
 
     function cheng(){//乘法
-
+        alert("JSON Data: " + data);
         var a=document.getElementById('count').value;
         var b=document.getElementById('price').value;
         var c=document.getElementById('total');
@@ -143,18 +99,102 @@
 
 </script>
 <script>
-    function showMaterial(){
+    function showMaterial(pageNum){
         $.ajax({
                 type:"post",
-                url:"/applyorder/showMaterial",
-                data:null,
+                url:"${pageContext.request.contextPath}/applyorder/showMaterial",
+                data:JSON.stringify({
+                    page : pageNum,
+                }),
                 contentType:'application/json;charset=utf-8',
+                dataType:'json',
                 success:function(data){
+                   alert("JSON Data: " + JSON.stringify(data));
+                    //var json=JSON.stringify(data);
+                    //var materialPageInfo=JSON.parse(json);
+                    //alert("JSON Data: " + data.pageSize);
+                    var result=data.list;
+                    //alert("JSON Data: " + JSON.stringify(result));
                     var htmlTable="";
-                }
-        }
+                        for(var i=0;i<result.length;i++){
+                            htmlTable=htmlTable+"<tr>";
+                            htmlTable=htmlTable+" <td style=\"text-align:center;\">\n" +
+                                "                                    [<a href=\"#\">添加</a>] -\n" +
+                                "                                    [<a href=\"#\">删除</a>]\n" +
+                                "                                </td>"
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ result[i].matCode;
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ result[i].mName;
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ result[i].specifications;
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ result[i].totalAmount;
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ result[i].unitsOfMeasurement;
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ result[i].price;
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ "<input style=\"width:60px;height:30px;\"id=\"amount\"type=\"text\">";
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ "<textarea name=\"deccription\">     </textarea>";
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+ "<select>\n" +
+                                "                            <option value =\"volvo\">A部门</option>\n" +
+                                "                                <option value =\"saab\">B部门</option>\n" +
+                                "                                <option value=\"opel\">C部门</option>\n" +
+                                "                                <option value=\"audi\">D部门</option>\n" +
+                                "                                </select>";
+                            htmlTable=htmlTable+"</td>";
+                            htmlTable=htmlTable+"<td>";
+                            htmlTable=htmlTable+"<input style=\"width:60px;height:30px;\"id=\"total\"type=\"text\">";
+                            htmlTable=htmlTable+"</td>";
+                        }
+                    $('#tbody').html(htmlTable);
+                    parsePageTable(data)
 
+            }
+        }
         );
     }
+    function parsePageTable(materialPageInfo) {
+
+        var pageTable="";
+        pageTable=pageTable+"<tr>";
+        if(materialPageInfo.hasPreviousPage){
+            var pageNum=materialPageInfo.pageNum-1;
+            pageTable=pageTable+" <td>\n" +
+                "            <a href='javascript:showMaterial("+pageNum+");' >前一页</a>\n" +
+                "            </td>"
+        }
+        var pageList=materialPageInfo.navigatepageNums;
+        for(var i in pageList){
+            if(pageList[i]==materialPageInfo.pageNum){
+                pageTable=pageTable+"<td style=\"font-weight: bold;\">"+pageList[i]+"</td>"
+            }else {
+                pageTable=pageTable+"<td>\n" +
+                    "                <a href='javascript:showMaterial("+pageList[i]+");' >"+pageList[i]+"</a>\n" +
+                    "                 </td>"
+
+            }
+        }
+        if(materialPageInfo.hasNextPage){
+            var pageNum=materialPageInfo.pageNum+1;
+            pageTable=pageTable+"<td>\n" +
+                "             <a href='javascript:showMaterial("+pageNum+");' >下一页</a>\n" +
+                "             </td>"
+        }
+        pageTable=pageTable+"</tr>"
+        $('#pageTable').html(pageTable);
+    }
+
 </script>
 <%@ include file="base.jsp"%>

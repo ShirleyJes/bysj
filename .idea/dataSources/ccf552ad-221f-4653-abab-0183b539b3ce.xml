@@ -1172,7 +1172,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="214" name="toalAmount">
+    <column id="275" parent="214" name="totalAmount">
       <Position>10</Position>
       <Comment>物料总数</Comment>
       <DataType>int(10)|0s</DataType>

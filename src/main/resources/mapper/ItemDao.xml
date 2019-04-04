@@ -31,8 +31,9 @@
             m.matCode,
             m.mName,
             m.specifications,
-            m.toalAmount,
-            m.unitsOfMeasurement
+            m.totalAmount,
+            m.unitsOfMeasurement,
+            m.price
         FROM
             material m
     </select>
