@@ -18,12 +18,12 @@
             <div class="middle">
                 <h1 style="padding: 50px 0 20px;">创建维修领料单</h1>
                 <form action="#" method="post">
-                    <table class="gridtable" style="width:100%;">
+                    <table id="applyorderHeadTable" class="gridtable" style="width:100%;">
                         <tr>
                             <th>申领单号：</th>
                             <td><input type="text" name="" value=""/></td>
                             <th>申领日期：</th>
-                            <td><input type="text" name="" value=""/></td>
+                            <td><input type="date" name="" value=""/></td>
                             <th>领用类型：</th>
                             <td><input type="text" name="" value=""/></td>
                         </tr>
@@ -37,7 +37,7 @@
                         </tr>
                     </table>
                    <%-- 订单信息--%>
-                    <table class="gridtable" style="width:100%;">
+                    <table id="itemDetailTable" class="gridtable" style="width:100%;">
                         <tr>
                             <th colspan="12">维修领料单信息 - [<a href="javascript:;" id="list">展开/收缩</a>]</th>
                         </tr>
@@ -112,17 +112,6 @@
     </div>
 </rapid:override>
 <script>
-    function cheng(){//乘法
-        alert("JSON Data: " + data);
-        var a=document.getElementById('count').value;
-        var b=document.getElementById('price').value;
-        var c=document.getElementById('total');
-        c.value=Number(a)*Number(b);
-
-
-    }
-</script>
-<script>
     function addItem(no) {
         var tableId = document.getElementById("result");
         var i=no%5;
@@ -159,7 +148,10 @@
             dept:col11,
             total:col12
         }
-        paint(detail);
+         paint(detail);
+        var tableId2=document.getElementById("applyorderHeadTable");
+        tableId2.rows[1].cells[1].getElementsByTagName("input")[0].value=Number(tableId2.rows[1].cells[1].getElementsByTagName("input")[0].value)+Number(col12);
+
     }
 </script>
 <script>
@@ -168,8 +160,8 @@
         var htmlTable="";
         htmlTable=htmlTable+"<tr class='itemDetail'>";
         htmlTable=htmlTable+" <td style=\"text-align:center;\">\n" +
-            "                                    <a href='#'>删除</a>\n" +
-            "                                </td>";
+            "                                    <a href='javascript:;' onclick='{if(confirm(\"确认删除？\")){deleteItem(this"+","+detail.no+");}else { }}'>删除</a>\n" +
+            "                  </td>";
         htmlTable=htmlTable+"<td>";
         htmlTable=htmlTable+detail.no;
         htmlTable=htmlTable+"</td>";
@@ -205,6 +197,28 @@
         htmlTable=htmlTable+"</td>";
         htmlTable=htmlTable+"</tr>";
         $('#itemDetailBody').append(htmlTable);
+    }
+</script>
+<script>
+    function deleteItem(obj,no) {
+        var index=obj.parentNode.parentNode.rowIndex;
+        var table = document.getElementById("itemDetailTable");
+
+        // 改变总费用
+        var resultTable=document.getElementById("result");
+        var i=no%5;
+        if(i==0){
+            i=5;
+        }
+        var money=resultTable.rows[i].cells[11].getElementsByTagName("input")[0].value;
+        console.log("momey:"+money);
+        var tableId2=document.getElementById("applyorderHeadTable");
+        tableId2.rows[1].cells[1].getElementsByTagName("input")[0].value=Number(tableId2.rows[1].cells[1].getElementsByTagName("input")[0].value)-Number(money);
+       /* 对result表（从后台得到的显示记录）调整*/
+        resultTable.rows[i].cells[11].getElementsByTagName("input")[0].value=null;
+        resultTable.rows[i].cells[8].getElementsByTagName("input")[0].value=null;
+        /* 删除指定行*/
+        table.deleteRow(index);
     }
 </script>
 <script>
@@ -256,7 +270,7 @@
                         htmlTable=htmlTable+ result[i].price;
                         htmlTable=htmlTable+"</td>";
                         htmlTable=htmlTable+"<td>";
-                        htmlTable=htmlTable+ "<input style=\"width:60px;height:30px;\"id=\"amount\"type=\"text\">";
+                        htmlTable=htmlTable+ "<input style=\"width:60px;height:30px;\"id=\"amount\"type=\"text\" onchange='cheng("+no+","+result[i].price+","+result[i].totalAmount+")'>";
                         htmlTable=htmlTable+"</td>";
                         htmlTable=htmlTable+"<td>";
                         htmlTable=htmlTable+ "<textarea name=\"description\" ></textarea>";
@@ -270,7 +284,7 @@
                             "                                </select>";
                         htmlTable=htmlTable+"</td>";
                         htmlTable=htmlTable+"<td>";
-                        htmlTable=htmlTable+"<input style=\"width:60px;height:30px;\"id=\"total\"type=\"text\">";
+                        htmlTable=htmlTable+"<input style=\"width:60px;height:30px;\"id=\"total\"type=\"text\" >";
                         htmlTable=htmlTable+"</td>";
                         htmlTable=htmlTable+"</tr>";
                     }
@@ -330,5 +344,27 @@
 
 </script>
 
+<script>
+    function cheng(no,price,totalamount){//乘法
+        /*只能从Ajax得到的数据的table操纵*/
+        var tableId = document.getElementById("result");
+        var i=no%5;
+        if(i==0){
+            i=5;
+        }
+
+
+        var amount=tableId.rows[i].cells[8].getElementsByTagName("input")[0].value;
+        if(amount>totalamount){
+            alert("该领料数量目前最多只有"+totalamount);
+            amount=totalamount;
+            tableId.rows[i].cells[8].getElementsByTagName("input")[0].value=amount;
+        }
+        // console.log(amount);
+        var total= tableId.rows[i].cells[11].getElementsByTagName("input")[0];
+        total.value=Number(amount)*Number(price);
+
+
+    }
 </script>
 <%@ include file="base.jsp"%>
