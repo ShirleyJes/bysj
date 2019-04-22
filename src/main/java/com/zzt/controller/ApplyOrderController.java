@@ -2,14 +2,17 @@ package com.zzt.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.zzt.model.ApplyOrder;
+import com.zzt.model.ApplyOrderParams;
 import com.zzt.model.Material;
 import com.zzt.service.IApplyOrderService;
 import com.zzt.service.IItemService;
+import com.zzt.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +23,8 @@ public class ApplyOrderController {
     private IApplyOrderService applyOrderService;
     @Autowired
     private IItemService itemService;
+    @Autowired
+    private IUserService userService;
     @RequestMapping("applyorderList")
     public ModelAndView findAllApplyOrder(@RequestParam(value = "page" ,defaultValue="1") int page){
         ModelAndView modelAndView=new ModelAndView();
@@ -72,5 +77,27 @@ public class ApplyOrderController {
         applyOrderService.deleteApplyOrder(num);
         return "redirect:/applyorder/applyorderList";
     }
-
+    @RequestMapping("insertApplyOrder")
+    public @ResponseBody Map insertApplyOrder(@RequestBody ApplyOrderParams applyOrderParams){
+        String applicantName=applyOrderParams.getApplicantName();
+        Integer applicantDept=applyOrderParams.getApplicantDept();
+        String approverName=applyOrderParams.getApproverName();
+        Integer approverDept=applyOrderParams.getApproverDept();
+//        得到主键
+        Integer approverid=userService.getUserId(approverName,approverDept);
+        Integer applicantid=userService.getUserId(applicantName,applicantDept);
+        //得到申请单对象
+        ApplyOrder applyOrder=new ApplyOrder();
+        applyOrder.setTotalCost(applyOrderParams.getTotalCost());
+        applyOrder.setComm(applyOrderParams.getComm());
+        applyOrder.setApplicantid(applicantid);
+        applyOrder.setApproverid(approverid);
+        applyOrder.setCreatedate(applyOrderParams.getCreatedate());
+        applyOrder.setType(applyOrderParams.getType());
+        applyOrder.setItemList(applyOrderParams.getItemList());
+        //插入申请单,返回申请单主键
+        Map result=applyOrderService.addApplyOrder(applyOrder);
+        System.out.println(applyOrderParams.toString());
+        return result;
+    }
 }

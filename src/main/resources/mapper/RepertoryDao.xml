@@ -5,7 +5,6 @@
 <mapper namespace="com.zzt.dao.IRepertoryDao">
     <resultMap id="repertoryMap" type="com.zzt.model.Repertory">
         <result column="mwid" property="mwid"/>
-        <result column="amount" jdbcType="INTEGER" property="amount"/>
         <association property="material" javaType="com.zzt.model.Material">
             <result column="matCode" jdbcType="INTEGER" property="matCode"/>
             <result column="mName" jdbcType="VARCHAR" property="mName"/>
@@ -16,6 +15,7 @@
             <result column="typeCode" jdbcType="INTEGER" property="typeCode"/>
             <result column="price" jdbcType="INTEGER" property="price"/>
             <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer"/>
+            <result column="totalAmount" jdbcType="INTEGER" property="totalAmount"/>
         </association>
         <association property="warehouse" javaType="com.zzt.model.Warehouse">
             <result column="wNumber" jdbcType="INTEGER" property="wNumber"/>
@@ -37,7 +37,7 @@
             m.manufacturer,
             m.unitsOfMeasurement,
             m.price,
-            mw.amount
+            m.totalAmount
         FROM
             mat_warehouse mw,
             material m,
@@ -66,7 +66,7 @@
             m.manufacturer,
             m.unitsOfMeasurement,
             m.price,
-            mw.amount
+            m.totalAmount
         FROM
             mat_warehouse mw,
             material m,
@@ -74,5 +74,8 @@
         WHERE
             mw.matCode = m.matCode
             AND mw.wNumber = w.wNumber
+    </select>
+    <select id="getWName" parameterType="Integer" resultType="String">
+        select wName from warehouse where wNumber=(select wNumber from mat_warehouse where matCode=#{matCode} )
     </select>
 </mapper>

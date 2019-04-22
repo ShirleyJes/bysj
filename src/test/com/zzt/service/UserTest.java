@@ -21,5 +21,10 @@ public class UserTest {
         String psw="123456";
         System.out.println(userService.loginByName(username,psw));
     }
-
+    @Test
+    public void getUserId(){
+        String username="张智涛";
+        Integer deptNo=1;
+        System.out.println(userService.getUserId(username,deptNo));
+    }
 }

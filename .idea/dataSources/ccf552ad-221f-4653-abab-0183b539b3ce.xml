@@ -865,7 +865,6 @@
       <Position>2</Position>
       <Comment>操作</Comment>
       <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="225" parent="210" name="sid">
@@ -873,6 +872,7 @@
       <Comment>状态</Comment>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="226" parent="210" name="createdate">
@@ -922,6 +922,7 @@
       <Comment>标记是否删除</Comment>
       <DataType>int(1)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="233" parent="210" name="sid">
@@ -1011,7 +1012,6 @@
       <Position>5</Position>
       <Comment>使用说明</Comment>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="248" parent="212" name="deptNo">

@@ -22,6 +22,18 @@ public class ApplyOrder {
     private User applicant;
     private Integer applicantid;
 
+    @Override
+    public String toString() {
+        return "ApplyOrder{" +
+                "createdate=" + createdate +
+                ", type='" + type + '\'' +
+                ", totalCost=" + totalCost +
+                ", comm='" + comm + '\'' +
+                ", approverid=" + approverid +
+                ", applicantid=" + applicantid +
+                '}';
+    }
+
     //一个申领单下有多个领用物料细节
     private List<Item> itemList;
     //操作
@@ -29,6 +41,8 @@ public class ApplyOrder {
     //状态
     private Integer sid;
     private State state;
+
+
 
     public Integer getNum() {
         return num;

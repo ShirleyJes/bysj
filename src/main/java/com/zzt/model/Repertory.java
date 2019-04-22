@@ -6,7 +6,6 @@ public class Repertory {
     private Warehouse warehouse;
     private Integer matCode;
     private Material material;
-    private Integer amount;
 
     public Integer getMwid() {
         return mwid;
@@ -48,14 +47,6 @@ public class Repertory {
         this.warehouse = warehouse;
     }
 
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
-
     @Override
     public String toString() {
         return "Repertory{" +
@@ -64,7 +55,6 @@ public class Repertory {
                 ", warehouse=" + warehouse.toString() +
                 ", matCode=" + matCode +
                 ", material=" + material.toString() +
-                ", amount=" + amount +
                 '}';
     }
 }

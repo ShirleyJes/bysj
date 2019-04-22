@@ -48,4 +48,9 @@ public class UserServiceImpl implements IUserService {
     public void register(User user) {
         userDao.insertUser(user);
     }
+
+    @Override
+    public Integer getUserId(String username, Integer deptNo) {
+        return  userDao.getUserId(username,deptNo);
+    }
 }

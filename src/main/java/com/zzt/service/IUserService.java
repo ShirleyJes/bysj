@@ -10,5 +10,6 @@ public interface IUserService {
     boolean loginByMobile(String mobile,String psw);
     //注册
     void register(User user);
-
+    //查询主键
+    Integer getUserId(String username,Integer deptNo);
 }

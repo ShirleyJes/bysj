@@ -35,6 +35,34 @@
                             <th>特定仓库：</th>
                             <td><input type="text" name="" value=""/></td>
                         </tr>
+                        <tr>
+                            <th>申领人：</th>
+                            <td><input type="text" name="" value=""/></td>
+                            <th>申领部门：</th>
+                            <td>
+                                <select>
+                                    <option value="1">研发部</option>
+                                    <option value="2">设计部</option>
+                                    <option value="3">外交部</option>
+                                    <option value="4">产品部</option>
+                                    <option value="5">运维部</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>审批人：</th>
+                            <td><input type="text" name="" value=""/></td>
+                            <th>审批人部门：</th>
+                            <td>
+                                <select>
+                                    <option value="1">研发部</option>
+                                    <option value="2">设计部</option>
+                                    <option value="3">外交部</option>
+                                    <option value="4">产品部</option>
+                                    <option value="5">运维部</option>
+                                </select>
+                            </td>
+                        </tr>
                     </table>
                    <%-- 订单信息--%>
                     <table id="itemDetailTable" class="gridtable" style="width:100%;">
@@ -63,7 +91,7 @@
                     <table class="gridtable" style="width:100%;">
                         <tr>
                             <th><input type="button" value="添加领用物资" onclick="showMaterial(1)"/></th>
-                            <th ><a href="#">保存</a></th>
+                            <th ><a href='javascript:postData();'>保存</a></th>
 
                             <th ><a href="#">物料查询</a></th>
                             <td><input type="text" name="" value=""/></td>
@@ -148,6 +176,7 @@
             dept:col11,
             total:col12
         }
+
          paint(detail);
         var tableId2=document.getElementById("applyorderHeadTable");
         tableId2.rows[1].cells[1].getElementsByTagName("input")[0].value=Number(tableId2.rows[1].cells[1].getElementsByTagName("input")[0].value)+Number(col12);
@@ -158,7 +187,7 @@
     //绘制维修领料单的具体信息
     function paint(detail) {
         var htmlTable="";
-        htmlTable=htmlTable+"<tr class='itemDetail'>";
+        htmlTable=htmlTable+"<tr class='itemDetail' >";
         htmlTable=htmlTable+" <td style=\"text-align:center;\">\n" +
             "                                    <a href='javascript:;' onclick='{if(confirm(\"确认删除？\")){deleteItem(this"+","+detail.no+");}else { }}'>删除</a>\n" +
             "                  </td>";
@@ -277,10 +306,11 @@
                         htmlTable=htmlTable+"</td>";
                         htmlTable=htmlTable+"<td>";
                         htmlTable=htmlTable+ "<select>\n" +
-                            "                            <option value =\"1\">A部门</option>\n" +
-                            "                                <option value =\"2\">B部门</option>\n" +
-                            "                                <option value=\"3\">C部门</option>\n" +
-                            "                                <option value=\"4\">D部门</option>\n" +
+                            "                            <option value =\"1\">研发部</option>\n" +
+                            "                                <option value =\"2\">设计部</option>\n" +
+                            "                                <option value=\"3\">外交部</option>\n" +
+                            "                                <option value=\"4\">产品部</option>\n" +
+                            "                                 <option value=\"5\">运维部</option>\n" +
                             "                                </select>";
                         htmlTable=htmlTable+"</td>";
                         htmlTable=htmlTable+"<td>";
@@ -365,6 +395,99 @@
         total.value=Number(amount)*Number(price);
 
 
+    }
+</script>
+<%--申领提交--%>
+<script>
+    function getItemData(){
+       /* var trList = $("#itemDetailBody").children("tr");
+        for (var i=0;i<trList.length;i++) {
+            var tdArr = trList.eq(i).find("td");
+            var matCode = tdArr.eq(2).find("input").val();//收入类别
+            alert(matCode);
+        }*/
+       var table=document.getElementById('itemDetailTable');
+       var itemList = [];
+       for(var i=2;i<table.rows.length;i++){
+           var matCode=table.rows[i].cells[2].innerText;
+           var amount= table.rows[i].cells[8].innerText;
+           var description=table.rows[i].cells[9].innerText;
+           var deptName=table.rows[i].cells[10].innerText;
+           var deptNo='';
+           switch (deptName) {
+               case '研发部':
+                   deptNo='1';
+                   break;
+               case '设计部':
+                   deptNo='2';
+                   break;
+               case '外交部':
+                   deptNo='3';
+                   break;
+               case '产品部':
+                   deptNo='4';
+                   break;
+               case '运维部':
+                   deptNo='5';
+                   break;
+           }
+           alert(deptNo);
+           var cost=table.rows[i].cells[11].innerText;
+           var item={
+               matCode:matCode,
+               amount:amount,
+               description:description,
+               deptNo:deptNo,
+               cost:cost,
+           }
+           itemList.push(item);
+       }
+       return itemList;
+
+    }
+    function postData(){
+        var table=document.getElementById("applyorderHeadTable");
+        var applicantselect=table.rows[2].cells[3].getElementsByTagName("select")[0];
+        var index=applicantselect.selectedIndex ;
+        var applicantDept=applicantselect.options[index].value;
+        var  approverselect=table.rows[3].cells[3].getElementsByTagName("select")[0];
+        var index=approverselect.selectedIndex ;
+        var approverDept=approverselect.options[index].value;
+        // 申领单头
+         var createdate=table.rows[0].cells[3].getElementsByTagName("input")[0].value;
+         var type=table.rows[0].cells[5].getElementsByTagName("input")[0].value;
+         var totalCost=table.rows[1].cells[1].getElementsByTagName("input")[0].value;
+         var comm=table.rows[1].cells[3].getElementsByTagName("input")[0].value;
+         var applicantName=table.rows[2].cells[1].getElementsByTagName("input")[0].value;
+         var approverName=table.rows[3].cells[1].getElementsByTagName("input")[0].value;
+        // alert("head Data: " + JSON.stringify(head));
+        var itemList=getItemData();
+        alert("itemList:"+JSON.stringify(itemList));
+        $.ajax({
+            type:"post",
+            url:"${pageContext.request.contextPath}/applyorder/insertApplyOrder",
+            data:JSON.stringify({
+                createdate:createdate,
+                type:type,
+                totalCost:totalCost,
+                comm:comm,
+                itemList:itemList,
+                applicantName:applicantName,
+                applicantDept:applicantDept,
+                approverName:approverName,
+                approverDept:approverDept
+            }),
+            contentType:'application/json;charset=utf-8',
+            dataType:'json',
+            success:function(data){
+                if(data.num>0){
+                    table.rows[0].cells[1].getElementsByTagName("input")[0].value=data.num;
+                    table.rows[1].cells[5].getElementsByTagName("input")[0].value=data.warehouse;
+                }else{
+                    alert("创建申领单失败！");
+                }
+            }
+        });
     }
 </script>
 <%@ include file="base.jsp"%>

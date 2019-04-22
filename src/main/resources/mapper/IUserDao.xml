@@ -23,4 +23,7 @@
         insert into user(username,email,mobile,deptNo,psw)
          values (#{username},#{email}，#{mobile},#{dept},#{psw})
     </insert>
+    <select id="getUserId" resultType="integer">
+        select id from user where username=#{username} and deptNo=#{deptNo}
+    </select>
 </mapper>

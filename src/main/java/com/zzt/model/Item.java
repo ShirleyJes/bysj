@@ -18,6 +18,7 @@ public class Item {
     //使用部门
     private Department department;
     private Integer deptNo;
+
     //项目总额
     private long cost;
 
@@ -53,7 +54,7 @@ public class Item {
         this.num = num;
     }
 
-    public long getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
@@ -93,5 +94,14 @@ public class Item {
         this.cost = cost;
     }
 
-
+    @Override
+    public String toString() {
+        return "Item{" +
+                "matCode=" + matCode +
+                ", amount=" + amount +
+                ", description='" + description + '\'' +
+                ", deptNo='" + deptNo + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
 }

@@ -29,10 +29,10 @@
             <result column="sname" property="sname"/>
         </association>
     </resultMap>
-
-    <insert id="addApplyOrder"   parameterType="ApplyOrder">
-        insert into applyorder (createdate,type,approverid,applicantid,operation,sid,comm,totalCost)
-        values (#{createdate},#{type},#{approverid},#{applicantid},#{operation},#{sid},#{comm},#{totalCost})
+    <!--处理主键自增-->
+    <insert id="addApplyOrder"   parameterType="ApplyOrder" useGeneratedKeys="true" keyProperty="num">
+        insert into applyorder (num,createdate,type,approverid,applicantid,comm,totalCost)
+        values (#{num},#{createdate},#{type},#{approverid},#{applicantid},#{comm},#{totalCost})
     </insert>
 
     <delete id="deleteApplyOrder"  parameterType="integer">
